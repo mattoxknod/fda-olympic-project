@@ -325,7 +325,7 @@ footer.site-footer {
   height: auto;
   overflow: visible;
 }
-.chart-axis text {
+.chart-axis {
   fill: var(--text-muted);
   font-size: 11px;
 }
