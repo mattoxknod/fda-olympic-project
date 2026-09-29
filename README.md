@@ -1,7 +1,11 @@
 # Olympic History Data Project
 
 A two-page site exploring 120 years of Olympic athlete and results data: a scrollable report of
-findings, and an interactive dashboard for filtering the data directly.
+findings (with an interactive globe), and an interactive dashboard for filtering the data
+directly. The two pages are cross-linked — click a country on the globe or a bar in the report's
+medal leaderboard to jump to the dashboard pre-filtered to that country. Both pages share a manual
+dark/light toggle in the nav bar (saved to `localStorage`), on top of following the system theme
+by default.
 
 ## Live site
 
@@ -27,6 +31,7 @@ _(link added once published with GitHub Pages)_
 | `js/globe.js` | Renders the interactive globe on the report page (D3 orthographic projection): drag to rotate, hover a country for its all-time medal/athlete totals, hover a host-city marker for that Games' top 3 countries. |
 | `js/globe-countries.js` | Maps NOC codes to the country name strings used in `data/countries-110m.json`, so the globe can join medal/athlete stats to map shapes. |
 | `data/countries-110m.json` | World country boundaries (Natural Earth, 110m resolution, via the `world-atlas` npm package) used to draw the globe. |
+| `js/theme.js` | Wires up the manual dark/light toggle in the nav bar (shared by both pages; preference saved to `localStorage`). |
 
 ## External libraries
 
@@ -102,3 +107,7 @@ One row is one athlete's participation in one event at one Olympic Games (Summer
   keying the join on the country name (stable across geoStitch) instead of the topojson id (not
   reliably preserved by it). Antarctica is also excluded from the globe entirely - no NOC of its
   own, and a common source of polar rendering glitches in an orthographic projection.
+- **The dashboard's "Compare two countries" table ignores the main Country filter** (so you can
+  compare any two countries regardless of what the main dropdown is set to) but respects every
+  other active filter - season, sex, sport, and year range. The country search box and the country
+  dropdown drive the same underlying filter and stay in sync in both directions.

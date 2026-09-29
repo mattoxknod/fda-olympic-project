@@ -20,6 +20,7 @@
     container: document.getElementById("chart-leaderboard"),
     data: data.finding1_leaderboard.map((d) => ({ label: nocName(d.NOC), value: d.total, noc: d.NOC })),
     colorIndex: 0,
+    onClick: (d) => { if (d.noc) window.location.href = `dashboard.html?noc=${d.noc}`; },
   });
 
   // ---------- Finding 2: medal trend for top 6 countries ----------

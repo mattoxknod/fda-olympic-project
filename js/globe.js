@@ -94,6 +94,7 @@
     }
 
     let worldData = null;
+    let pointerDownAt = null; // for distinguishing a click from a drag-release
 
     function render() {
       if (!worldData) return; // map data hasn't finished loading yet
@@ -132,7 +133,17 @@
             evt
           );
         })
-        .on("pointerleave", hideTip);
+        .on("pointerleave", hideTip)
+        .style("cursor", (d) => (nocByMapName.get(d.properties.name) ? "pointer" : null))
+        .on("pointerdown", (evt) => { pointerDownAt = { x: evt.clientX, y: evt.clientY }; })
+        .on("pointerup", (evt, d) => {
+          if (!pointerDownAt) return;
+          const dist = Math.hypot(evt.clientX - pointerDownAt.x, evt.clientY - pointerDownAt.y);
+          pointerDownAt = null;
+          if (dist > 4) return; // a drag-release, not a click
+          const noc = nocByMapName.get(d.properties.name);
+          if (noc) window.location.href = `dashboard.html?noc=${noc}`;
+        });
 
       const pts = markerLayer.selectAll("g.globe-marker")
         .data(markers.filter(isFrontFacing), (d) => d.city);

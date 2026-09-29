@@ -180,7 +180,7 @@
   }
 
   // ---------------- Bar chart (horizontal, sorted, single hue) ----------------
-  function barChart({ container, data, valueFormat, colorIndex = 0, height, highlightLabel }) {
+  function barChart({ container, data, valueFormat, colorIndex = 0, height, highlightLabel, onClick }) {
     container.innerHTML = "";
     const width = 640;
     const barHeight = 22;
@@ -231,6 +231,11 @@
       hit.addEventListener("focus", () => showTip(d, y));
       hit.setAttribute("tabindex", "0");
       hit.setAttribute("focusable", "true");
+      if (onClick) {
+        hit.style.cursor = "pointer";
+        hit.addEventListener("click", () => onClick(d));
+        hit.addEventListener("keydown", (e) => { if (e.key === "Enter") onClick(d); });
+      }
     });
 
     function showTip(d, y) {

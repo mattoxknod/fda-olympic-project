@@ -170,6 +170,37 @@ img { max-width: 100%; }
   font-weight: 600;
 }
 
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-left: 6px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--gridline);
+  color: var(--text-primary);
+}
+.theme-toggle .icon-sun {
+  display: none;
+}
+.theme-toggle .icon-moon {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
 /* ---------- Layout ---------- */
 main {
   max-width: 900px;
@@ -201,6 +232,7 @@ main {
 .header-globe {
   flex: none;
   margin: 0 auto;
+  max-width: 260px;
 }
 @media (max-width: 720px) {
   .report-header .header-inner {
@@ -515,6 +547,7 @@ td.country-cell .flag-chip {
   font-size: 0.72rem;
   color: var(--text-muted);
   margin-top: 6px;
+  max-width: 260px;
 }
 .globe-tooltip {
   max-width: 220px;
@@ -677,6 +710,26 @@ table.data-table th {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.compare-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 4px 0 16px;
+}
+.compare-row .filter-field {
+  min-width: 200px;
+}
+table.compare-table th:nth-child(2),
+table.compare-table th:nth-child(3),
+table.compare-table td:nth-child(2),
+table.compare-table td:nth-child(3) {
+  text-align: right;
+}
+table.compare-table td.compare-lead {
+  color: var(--text-primary);
+  font-weight: 650;
 }
 
 .dashboard-grid .chart-card { border-top: 3px solid var(--chart-accent, var(--series-1)); }

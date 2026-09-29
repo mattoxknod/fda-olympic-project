@@ -1,4 +1,10 @@
 <title>Olympic Data Dashboard</title>
+<script>
+  (function () {
+    var saved = localStorage.getItem("theme");
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 <link rel="stylesheet" href="css/styles.css" />
 
 <nav class="site-nav">
@@ -15,6 +21,10 @@
   <div class="links">
     <a class="nav-link" href="index.html">Report</a>
     <a class="nav-link" href="dashboard.html" aria-current="page">Dashboard</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z" fill="currentColor"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></g></svg>
+    </button>
   </div>
 </nav>
 
@@ -54,8 +64,10 @@
         <select id="f-sport"></select>
       </div>
       <div class="filter-field">
-        <label for="f-noc">Country</label>
-        <select id="f-noc"></select>
+        <label for="f-noc-search">Country</label>
+        <input type="text" id="f-noc-search" list="noc-datalist" placeholder="Search a country&hellip;" autocomplete="off" />
+        <datalist id="noc-datalist"></datalist>
+        <select id="f-noc" aria-label="Country (dropdown)"></select>
       </div>
       <div class="filter-field">
         <label for="f-year-from">From year</label>
@@ -108,6 +120,31 @@
         <tbody id="table-body"></tbody>
       </table>
     </div>
+
+    <h2 class="section-title">Compare two countries</h2>
+    <p class="section-sub">Side by side, using the same filters as above.</p>
+    <div class="compare-row">
+      <div class="filter-field">
+        <label for="compare-a">Country A</label>
+        <select id="compare-a"></select>
+      </div>
+      <div class="filter-field">
+        <label for="compare-b">Country B</label>
+        <select id="compare-b"></select>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table compare-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th id="compare-a-head">Country A</th>
+            <th id="compare-b-head">Country B</th>
+          </tr>
+        </thead>
+        <tbody id="compare-body"></tbody>
+      </table>
+    </div>
   </div>
 </main>
 
@@ -116,6 +153,7 @@
   Financial Data Analytics course project.
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/csv.js"></script>
 <script src="js/flags.js"></script>
 <script src="js/charts.js"></script>

@@ -261,6 +261,80 @@
     renderStats(ctx);
     CHART_DEFAULTS.forEach((_, i) => renderChart(i, ctx));
     renderTable(ctx);
+    renderCompare();
+  }
+
+  // ---------------- Country comparison ----------------
+  // Ignores the main Country filter (so you can compare any two countries
+  // regardless of what the main dropdown is set to) but respects every
+  // other active filter (season/sex/sport/year).
+  function countryStatsFrom(rows) {
+    const medals = dedupMedalRows(rows).length;
+    const athleteRows = dedupAthleteGames(rows);
+    const athletes = new Set(rows.map((r) => r.ID)).size;
+    const ages = athleteRows.map((r) => r.Age).filter((v) => v != null);
+    const females = athleteRows.filter((r) => r.Sex === "F").length;
+    return {
+      events: rows.length,
+      athletes,
+      medals,
+      avgAge: ages.length ? mean(ages) : null,
+      femalePct: athleteRows.length ? (females / athleteRows.length) * 100 : null,
+    };
+  }
+
+  function renderCompare() {
+    const aSel = document.getElementById("compare-a");
+    const bSel = document.getElementById("compare-b");
+    if (!aSel || !aSel.value || !bSel || !bSel.value) return;
+    const a = aSel.value, b = bSel.value;
+
+    const f = currentFilters();
+    const base = applyFilters(allRows, { ...f, noc: "all" });
+    const statsA = countryStatsFrom(base.filter((r) => r.NOC === a));
+    const statsB = countryStatsFrom(base.filter((r) => r.NOC === b));
+
+    const headA = document.getElementById("compare-a-head");
+    const headB = document.getElementById("compare-b-head");
+    [[headA, a], [headB, b]].forEach(([head, noc]) => {
+      head.innerHTML = "";
+      if (window.Charts && window.Charts.flagChipDOM) head.appendChild(Charts.flagChipDOM(noc));
+      head.appendChild(document.createTextNode(" " + nocLabel(noc)));
+    });
+
+    const metrics = [
+      ["Athlete-events", statsA.events, statsB.events, (v) => v.toLocaleString()],
+      ["Athletes", statsA.athletes, statsB.athletes, (v) => v.toLocaleString()],
+      ["Medals", statsA.medals, statsB.medals, (v) => v.toLocaleString()],
+      ["Avg age", statsA.avgAge, statsB.avgAge, (v) => (v != null ? v.toFixed(1) : "-")],
+      ["Female %", statsA.femalePct, statsB.femalePct, (v) => (v != null ? v.toFixed(0) + "%" : "-")],
+    ];
+    const tbody = document.getElementById("compare-body");
+    tbody.innerHTML = "";
+    metrics.forEach(([label, va, vb, fmt]) => {
+      const tr = document.createElement("tr");
+      const tdLabel = document.createElement("td");
+      tdLabel.textContent = label;
+      const tdA = document.createElement("td");
+      tdA.textContent = fmt(va);
+      const tdB = document.createElement("td");
+      tdB.textContent = fmt(vb);
+      if (va != null && vb != null && va !== vb) {
+        (va > vb ? tdA : tdB).classList.add("compare-lead");
+      }
+      tr.appendChild(tdLabel);
+      tr.appendChild(tdA);
+      tr.appendChild(tdB);
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Sets the Country filter from anywhere (search box, dropdown, a
+  // cross-linked URL) and keeps the search box text in sync with it.
+  function setNocFilter(noc) {
+    document.getElementById("f-noc").value = noc;
+    const search = document.getElementById("f-noc-search");
+    if (search) search.value = noc === "all" ? "" : nocLabel(noc);
   }
 
   function populateSelect(el, values, { withAll = true, allLabel = "All" } = {}) {
@@ -328,6 +402,37 @@
     ).map((n) => ({ value: n, label: nocLabel(n) }));
     populateSelect(document.getElementById("f-noc"), nocs, { allLabel: "All countries" });
 
+    // Search box: a second way to set the same Country filter as the
+    // dropdown (kept in sync both directions), via a native datalist.
+    const datalist = document.getElementById("noc-datalist");
+    nocs.forEach((n) => {
+      const opt = document.createElement("option");
+      opt.value = n.label;
+      datalist.appendChild(opt);
+    });
+    const searchInput = document.getElementById("f-noc-search");
+    searchInput.addEventListener("change", () => {
+      const typed = searchInput.value.trim();
+      if (!typed) { setNocFilter("all"); renderAll(); return; }
+      const match = nocs.find((n) => n.label.toLowerCase() === typed.toLowerCase());
+      if (match) { setNocFilter(match.value); renderAll(); }
+    });
+    document.getElementById("f-noc").addEventListener("change", () => {
+      searchInput.value = document.getElementById("f-noc").value === "all"
+        ? "" : nocLabel(document.getElementById("f-noc").value);
+    });
+
+    // Compare-countries selects, defaulted to the two all-time medal leaders.
+    populateSelect(document.getElementById("compare-a"), nocs, { withAll: false });
+    populateSelect(document.getElementById("compare-b"), nocs, { withAll: false });
+    const allTimeMedalCounts = new Map();
+    dedupMedalRows(allRows).forEach((m) => allTimeMedalCounts.set(m.NOC, (allTimeMedalCounts.get(m.NOC) || 0) + 1));
+    const topTwo = Array.from(allTimeMedalCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([noc]) => noc);
+    if (topTwo[0]) document.getElementById("compare-a").value = topTwo[0];
+    if (topTwo[1]) document.getElementById("compare-b").value = topTwo[1];
+    document.getElementById("compare-a").addEventListener("change", renderCompare);
+    document.getElementById("compare-b").addEventListener("change", renderCompare);
+
     const years = Array.from(new Set(allRows.map((r) => r.Year))).sort((a, b) => a - b);
     const yearOpts = years.map((y) => ({ value: y, label: String(y) }));
     populateSelect(document.getElementById("f-year-from"), yearOpts, { withAll: false });
@@ -375,11 +480,18 @@
       document.getElementById(id).addEventListener("change", renderAll);
     });
 
+    // Cross-linked from the report page's globe or leaderboard chart
+    // (dashboard.html?noc=USA) - pre-select that country's filter.
+    const nocParam = new URLSearchParams(location.search).get("noc");
+    if (nocParam && nocs.some((n) => n.value === nocParam)) {
+      setNocFilter(nocParam);
+    }
+
     document.getElementById("btn-reset").addEventListener("click", () => {
       document.getElementById("f-season").value = "all";
       document.getElementById("f-sex").value = "all";
       document.getElementById("f-sport").value = "all";
-      document.getElementById("f-noc").value = "all";
+      setNocFilter("all");
       document.getElementById("f-year-from").value = years[0];
       document.getElementById("f-year-to").value = years[years.length - 1];
       CHART_DEFAULTS.forEach((def, i) => {

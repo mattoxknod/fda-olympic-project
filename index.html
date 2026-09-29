@@ -1,4 +1,12 @@
 <title>120 Years of Olympic Data</title>
+<script>
+  // Applied before first paint so a saved preference never flashes the
+  // wrong theme. The toggle itself (js/theme.js) runs later, at the bottom.
+  (function () {
+    var saved = localStorage.getItem("theme");
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 <link rel="stylesheet" href="css/styles.css" />
 
 <nav class="site-nav">
@@ -15,6 +23,10 @@
   <div class="links">
     <a class="nav-link" href="index.html" aria-current="page">Report</a>
     <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z" fill="currentColor"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></g></svg>
+    </button>
   </div>
 </nav>
 
@@ -43,7 +55,7 @@
       </div>
       <div class="header-globe">
         <div id="globe-container" aria-label="Interactive globe: hover a country for its all-time medal and athlete totals, hover a red marker for that city's host year(s) and top 3 countries"></div>
-        <p class="globe-caption">Drag to rotate &middot; scroll to zoom &middot; hover a country or a host-city marker</p>
+        <p class="globe-caption">Drag to rotate &middot; scroll to zoom &middot; hover a country or a host-city marker &middot; click a country to explore it on the dashboard</p>
       </div>
     </div>
   </header>
@@ -77,6 +89,7 @@
       competition &mdash; well ahead of the Soviet Union (1,197) and Germany (1,004). Great
       Britain, France, and Italy round out the top five. Fifteen countries account for the vast
       majority of medals ever awarded, out of 230 that have won at least one.
+      Click a bar to explore that country on the dashboard.
     </p>
     <div class="chart-card" id="chart-leaderboard"></div>
   </section>
@@ -252,6 +265,7 @@
   Financial Data Analytics course project.
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/noc-names.js"></script>
 <script src="js/flags.js"></script>
 <script src="js/charts.js"></script>
