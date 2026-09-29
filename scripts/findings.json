@@ -1,0 +1,2049 @@
+{
+  "headline": {
+    "totalAthleteEvents": 271116,
+    "uniqueAthletes": 135571,
+    "countries": 230,
+    "gamesCount": 51,
+    "totalMedalsAwarded": 18905
+  },
+  "finding1_leaderboard": [
+    {
+      "NOC": "USA",
+      "total": 2823
+    },
+    {
+      "NOC": "URS",
+      "total": 1197
+    },
+    {
+      "NOC": "GER",
+      "total": 1004
+    },
+    {
+      "NOC": "GBR",
+      "total": 919
+    },
+    {
+      "NOC": "FRA",
+      "total": 879
+    },
+    {
+      "NOC": "ITA",
+      "total": 722
+    },
+    {
+      "NOC": "SWE",
+      "total": 657
+    },
+    {
+      "NOC": "CHN",
+      "total": 595
+    },
+    {
+      "NOC": "RUS",
+      "total": 584
+    },
+    {
+      "NOC": "AUS",
+      "total": 519
+    },
+    {
+      "NOC": "GDR",
+      "total": 519
+    },
+    {
+      "NOC": "HUN",
+      "total": 510
+    },
+    {
+      "NOC": "JPN",
+      "total": 482
+    },
+    {
+      "NOC": "CAN",
+      "total": 475
+    },
+    {
+      "NOC": "NOR",
+      "total": 474
+    }
+  ],
+  "finding2_trend": [
+    {
+      "NOC": "FRA",
+      "Year": 1896,
+      "medals": 11
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1896,
+      "medals": 9
+    },
+    {
+      "NOC": "GER",
+      "Year": 1896,
+      "medals": 14
+    },
+    {
+      "NOC": "USA",
+      "Year": 1896,
+      "medals": 19
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1900,
+      "medals": 102
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1900,
+      "medals": 42
+    },
+    {
+      "NOC": "GER",
+      "Year": 1900,
+      "medals": 8
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1900,
+      "medals": 5
+    },
+    {
+      "NOC": "USA",
+      "Year": 1900,
+      "medals": 54
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1904,
+      "medals": 2
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1904,
+      "medals": 2
+    },
+    {
+      "NOC": "GER",
+      "Year": 1904,
+      "medals": 16
+    },
+    {
+      "NOC": "USA",
+      "Year": 1904,
+      "medals": 230
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1906,
+      "medals": 41
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1906,
+      "medals": 25
+    },
+    {
+      "NOC": "GER",
+      "Year": 1906,
+      "medals": 14
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1906,
+      "medals": 16
+    },
+    {
+      "NOC": "USA",
+      "Year": 1906,
+      "medals": 23
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1908,
+      "medals": 19
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1908,
+      "medals": 143
+    },
+    {
+      "NOC": "GER",
+      "Year": 1908,
+      "medals": 13
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1908,
+      "medals": 4
+    },
+    {
+      "NOC": "USA",
+      "Year": 1908,
+      "medals": 46
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1912,
+      "medals": 15
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1912,
+      "medals": 41
+    },
+    {
+      "NOC": "GER",
+      "Year": 1912,
+      "medals": 26
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1912,
+      "medals": 8
+    },
+    {
+      "NOC": "USA",
+      "Year": 1912,
+      "medals": 63
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1920,
+      "medals": 42
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1920,
+      "medals": 43
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1920,
+      "medals": 25
+    },
+    {
+      "NOC": "USA",
+      "Year": 1920,
+      "medals": 95
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1924,
+      "medals": 43
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1924,
+      "medals": 40
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1924,
+      "medals": 16
+    },
+    {
+      "NOC": "USA",
+      "Year": 1924,
+      "medals": 103
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1928,
+      "medals": 26
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1928,
+      "medals": 23
+    },
+    {
+      "NOC": "GER",
+      "Year": 1928,
+      "medals": 40
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1928,
+      "medals": 20
+    },
+    {
+      "NOC": "USA",
+      "Year": 1928,
+      "medals": 62
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1932,
+      "medals": 21
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1932,
+      "medals": 17
+    },
+    {
+      "NOC": "GER",
+      "Year": 1932,
+      "medals": 26
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1932,
+      "medals": 36
+    },
+    {
+      "NOC": "USA",
+      "Year": 1932,
+      "medals": 122
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1936,
+      "medals": 20
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1936,
+      "medals": 17
+    },
+    {
+      "NOC": "GER",
+      "Year": 1936,
+      "medals": 107
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1936,
+      "medals": 27
+    },
+    {
+      "NOC": "USA",
+      "Year": 1936,
+      "medals": 61
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1948,
+      "medals": 37
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1948,
+      "medals": 29
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1948,
+      "medals": 32
+    },
+    {
+      "NOC": "USA",
+      "Year": 1948,
+      "medals": 92
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1952,
+      "medals": 19
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1952,
+      "medals": 12
+    },
+    {
+      "NOC": "GER",
+      "Year": 1952,
+      "medals": 31
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1952,
+      "medals": 23
+    },
+    {
+      "NOC": "URS",
+      "Year": 1952,
+      "medals": 70
+    },
+    {
+      "NOC": "USA",
+      "Year": 1952,
+      "medals": 87
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1956,
+      "medals": 14
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1956,
+      "medals": 24
+    },
+    {
+      "NOC": "GER",
+      "Year": 1956,
+      "medals": 28
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1956,
+      "medals": 28
+    },
+    {
+      "NOC": "URS",
+      "Year": 1956,
+      "medals": 113
+    },
+    {
+      "NOC": "USA",
+      "Year": 1956,
+      "medals": 81
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1960,
+      "medals": 8
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1960,
+      "medals": 20
+    },
+    {
+      "NOC": "GER",
+      "Year": 1960,
+      "medals": 50
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1960,
+      "medals": 37
+    },
+    {
+      "NOC": "URS",
+      "Year": 1960,
+      "medals": 124
+    },
+    {
+      "NOC": "USA",
+      "Year": 1960,
+      "medals": 81
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1964,
+      "medals": 22
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1964,
+      "medals": 19
+    },
+    {
+      "NOC": "GER",
+      "Year": 1964,
+      "medals": 59
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1964,
+      "medals": 31
+    },
+    {
+      "NOC": "URS",
+      "Year": 1964,
+      "medals": 117
+    },
+    {
+      "NOC": "USA",
+      "Year": 1964,
+      "medals": 97
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1968,
+      "medals": 24
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1968,
+      "medals": 13
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1968,
+      "medals": 20
+    },
+    {
+      "NOC": "URS",
+      "Year": 1968,
+      "medals": 104
+    },
+    {
+      "NOC": "USA",
+      "Year": 1968,
+      "medals": 112
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1972,
+      "medals": 16
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1972,
+      "medals": 18
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1972,
+      "medals": 23
+    },
+    {
+      "NOC": "URS",
+      "Year": 1972,
+      "medals": 115
+    },
+    {
+      "NOC": "USA",
+      "Year": 1972,
+      "medals": 102
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1976,
+      "medals": 10
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1976,
+      "medals": 14
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1976,
+      "medals": 17
+    },
+    {
+      "NOC": "URS",
+      "Year": 1976,
+      "medals": 152
+    },
+    {
+      "NOC": "USA",
+      "Year": 1976,
+      "medals": 104
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1980,
+      "medals": 15
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1980,
+      "medals": 22
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1980,
+      "medals": 17
+    },
+    {
+      "NOC": "URS",
+      "Year": 1980,
+      "medals": 217
+    },
+    {
+      "NOC": "USA",
+      "Year": 1980,
+      "medals": 12
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1984,
+      "medals": 31
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1984,
+      "medals": 38
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1984,
+      "medals": 34
+    },
+    {
+      "NOC": "URS",
+      "Year": 1984,
+      "medals": 25
+    },
+    {
+      "NOC": "USA",
+      "Year": 1984,
+      "medals": 181
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1988,
+      "medals": 18
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1988,
+      "medals": 24
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1988,
+      "medals": 19
+    },
+    {
+      "NOC": "URS",
+      "Year": 1988,
+      "medals": 160
+    },
+    {
+      "NOC": "USA",
+      "Year": 1988,
+      "medals": 100
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1992,
+      "medals": 38
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1992,
+      "medals": 20
+    },
+    {
+      "NOC": "GER",
+      "Year": 1992,
+      "medals": 108
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1992,
+      "medals": 33
+    },
+    {
+      "NOC": "USA",
+      "Year": 1992,
+      "medals": 119
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1994,
+      "medals": 5
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1994,
+      "medals": 2
+    },
+    {
+      "NOC": "GER",
+      "Year": 1994,
+      "medals": 24
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1994,
+      "medals": 20
+    },
+    {
+      "NOC": "USA",
+      "Year": 1994,
+      "medals": 13
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1996,
+      "medals": 37
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1996,
+      "medals": 15
+    },
+    {
+      "NOC": "GER",
+      "Year": 1996,
+      "medals": 65
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1996,
+      "medals": 35
+    },
+    {
+      "NOC": "USA",
+      "Year": 1996,
+      "medals": 101
+    },
+    {
+      "NOC": "FRA",
+      "Year": 1998,
+      "medals": 8
+    },
+    {
+      "NOC": "GBR",
+      "Year": 1998,
+      "medals": 1
+    },
+    {
+      "NOC": "GER",
+      "Year": 1998,
+      "medals": 29
+    },
+    {
+      "NOC": "ITA",
+      "Year": 1998,
+      "medals": 10
+    },
+    {
+      "NOC": "USA",
+      "Year": 1998,
+      "medals": 13
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2000,
+      "medals": 38
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2000,
+      "medals": 28
+    },
+    {
+      "NOC": "GER",
+      "Year": 2000,
+      "medals": 56
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2000,
+      "medals": 34
+    },
+    {
+      "NOC": "USA",
+      "Year": 2000,
+      "medals": 91
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2002,
+      "medals": 11
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2002,
+      "medals": 2
+    },
+    {
+      "NOC": "GER",
+      "Year": 2002,
+      "medals": 36
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2002,
+      "medals": 13
+    },
+    {
+      "NOC": "USA",
+      "Year": 2002,
+      "medals": 34
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2004,
+      "medals": 33
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2004,
+      "medals": 30
+    },
+    {
+      "NOC": "GER",
+      "Year": 2004,
+      "medals": 49
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2004,
+      "medals": 32
+    },
+    {
+      "NOC": "USA",
+      "Year": 2004,
+      "medals": 101
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2006,
+      "medals": 9
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2006,
+      "medals": 1
+    },
+    {
+      "NOC": "GER",
+      "Year": 2006,
+      "medals": 29
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2006,
+      "medals": 11
+    },
+    {
+      "NOC": "USA",
+      "Year": 2006,
+      "medals": 25
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2008,
+      "medals": 41
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2008,
+      "medals": 48
+    },
+    {
+      "NOC": "GER",
+      "Year": 2008,
+      "medals": 41
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2008,
+      "medals": 27
+    },
+    {
+      "NOC": "USA",
+      "Year": 2008,
+      "medals": 110
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2010,
+      "medals": 11
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2010,
+      "medals": 1
+    },
+    {
+      "NOC": "GER",
+      "Year": 2010,
+      "medals": 30
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2010,
+      "medals": 5
+    },
+    {
+      "NOC": "USA",
+      "Year": 2010,
+      "medals": 37
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2012,
+      "medals": 35
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2012,
+      "medals": 65
+    },
+    {
+      "NOC": "GER",
+      "Year": 2012,
+      "medals": 44
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2012,
+      "medals": 28
+    },
+    {
+      "NOC": "USA",
+      "Year": 2012,
+      "medals": 103
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2014,
+      "medals": 15
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2014,
+      "medals": 4
+    },
+    {
+      "NOC": "GER",
+      "Year": 2014,
+      "medals": 19
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2014,
+      "medals": 8
+    },
+    {
+      "NOC": "USA",
+      "Year": 2014,
+      "medals": 28
+    },
+    {
+      "NOC": "FRA",
+      "Year": 2016,
+      "medals": 42
+    },
+    {
+      "NOC": "GBR",
+      "Year": 2016,
+      "medals": 67
+    },
+    {
+      "NOC": "GER",
+      "Year": 2016,
+      "medals": 42
+    },
+    {
+      "NOC": "ITA",
+      "Year": 2016,
+      "medals": 28
+    },
+    {
+      "NOC": "USA",
+      "Year": 2016,
+      "medals": 121
+    }
+  ],
+  "finding3_concentration": {
+    "summer": {
+      "season": "Summer",
+      "totalMedals": 16052,
+      "countriesWithMedals": 147,
+      "top10ShareOfMedals": 0.5394966359332171,
+      "top10": [
+        {
+          "NOC": "USA",
+          "count": 2544
+        },
+        {
+          "NOC": "URS",
+          "count": 1005
+        },
+        {
+          "NOC": "GBR",
+          "count": 892
+        },
+        {
+          "NOC": "GER",
+          "count": 776
+        },
+        {
+          "NOC": "FRA",
+          "count": 770
+        },
+        {
+          "NOC": "ITA",
+          "count": 608
+        },
+        {
+          "NOC": "CHN",
+          "count": 542
+        },
+        {
+          "NOC": "SWE",
+          "count": 513
+        },
+        {
+          "NOC": "AUS",
+          "count": 506
+        },
+        {
+          "NOC": "HUN",
+          "count": 504
+        }
+      ]
+    },
+    "winter": {
+      "season": "Winter",
+      "totalMedals": 2853,
+      "countriesWithMedals": 46,
+      "top10ShareOfMedals": 0.6912022432527164,
+      "top10": [
+        {
+          "NOC": "NOR",
+          "count": 319
+        },
+        {
+          "NOC": "USA",
+          "count": 279
+        },
+        {
+          "NOC": "GER",
+          "count": 228
+        },
+        {
+          "NOC": "AUT",
+          "count": 218
+        },
+        {
+          "NOC": "URS",
+          "count": 192
+        },
+        {
+          "NOC": "CAN",
+          "count": 170
+        },
+        {
+          "NOC": "FIN",
+          "count": 161
+        },
+        {
+          "NOC": "SWE",
+          "count": 144
+        },
+        {
+          "NOC": "SUI",
+          "count": 137
+        },
+        {
+          "NOC": "RUS",
+          "count": 124
+        }
+      ]
+    }
+  },
+  "finding4_hostBump": [
+    {
+      "NOC": "KOR",
+      "city": "Seoul",
+      "hostYear": 1988,
+      "hostMedals": 33,
+      "avgOtherYears": 15.3,
+      "pctChange": 115.2,
+      "yearsOfData": 15
+    },
+    {
+      "NOC": "ESP",
+      "city": "Barcelona",
+      "hostYear": 1992,
+      "hostMedals": 22,
+      "avgOtherYears": 7,
+      "pctChange": 214.3,
+      "yearsOfData": 18
+    },
+    {
+      "NOC": "USA",
+      "city": "Atlanta",
+      "hostYear": 1996,
+      "hostMedals": 101,
+      "avgOtherYears": 90.5,
+      "pctChange": 11.6,
+      "yearsOfData": 27
+    },
+    {
+      "NOC": "AUS",
+      "city": "Sydney",
+      "hostYear": 2000,
+      "hostMedals": 58,
+      "avgOtherYears": 17.2,
+      "pctChange": 236.6,
+      "yearsOfData": 26
+    },
+    {
+      "NOC": "GRE",
+      "city": "Athens",
+      "hostYear": 2004,
+      "hostMedals": 16,
+      "avgOtherYears": 6.8,
+      "pctChange": 137,
+      "yearsOfData": 20
+    },
+    {
+      "NOC": "CHN",
+      "city": "Beijing",
+      "hostYear": 2008,
+      "hostMedals": 100,
+      "avgOtherYears": 55.3,
+      "pctChange": 81,
+      "yearsOfData": 8
+    },
+    {
+      "NOC": "GBR",
+      "city": "London",
+      "hostYear": 2012,
+      "hostMedals": 65,
+      "avgOtherYears": 29.5,
+      "pctChange": 120.1,
+      "yearsOfData": 28
+    },
+    {
+      "NOC": "BRA",
+      "city": "Rio de Janeiro",
+      "hostYear": 2016,
+      "hostMedals": 19,
+      "avgOtherYears": 6.1,
+      "pctChange": 213.8,
+      "yearsOfData": 18
+    }
+  ],
+  "finding5_ageTrend": [
+    {
+      "Year": 1896,
+      "avgAge": 23.14,
+      "n": 72
+    },
+    {
+      "Year": 1900,
+      "avgAge": 28.27,
+      "n": 638
+    },
+    {
+      "Year": 1904,
+      "avgAge": 26.85,
+      "n": 501
+    },
+    {
+      "Year": 1906,
+      "avgAge": 25.61,
+      "n": 392
+    },
+    {
+      "Year": 1908,
+      "avgAge": 26.86,
+      "n": 1537
+    },
+    {
+      "Year": 1912,
+      "avgAge": 26.63,
+      "n": 2316
+    },
+    {
+      "Year": 1920,
+      "avgAge": 27.89,
+      "n": 2123
+    },
+    {
+      "Year": 1924,
+      "avgAge": 27.79,
+      "n": 2821
+    },
+    {
+      "Year": 1928,
+      "avgAge": 27.9,
+      "n": 2990
+    },
+    {
+      "Year": 1932,
+      "avgAge": 30.62,
+      "n": 1913
+    },
+    {
+      "Year": 1936,
+      "avgAge": 27.12,
+      "n": 4986
+    },
+    {
+      "Year": 1948,
+      "avgAge": 28.6,
+      "n": 4189
+    },
+    {
+      "Year": 1952,
+      "avgAge": 26.46,
+      "n": 5432
+    },
+    {
+      "Year": 1956,
+      "avgAge": 26.11,
+      "n": 3692
+    },
+    {
+      "Year": 1960,
+      "avgAge": 25.47,
+      "n": 5896
+    },
+    {
+      "Year": 1964,
+      "avgAge": 25.27,
+      "n": 6187
+    },
+    {
+      "Year": 1968,
+      "avgAge": 24.97,
+      "n": 6622
+    },
+    {
+      "Year": 1972,
+      "avgAge": 25.06,
+      "n": 8037
+    },
+    {
+      "Year": 1976,
+      "avgAge": 24.58,
+      "n": 7167
+    },
+    {
+      "Year": 1980,
+      "avgAge": 24.33,
+      "n": 6162
+    },
+    {
+      "Year": 1984,
+      "avgAge": 24.49,
+      "n": 7899
+    },
+    {
+      "Year": 1988,
+      "avgAge": 24.71,
+      "n": 9786
+    },
+    {
+      "Year": 1992,
+      "avgAge": 24.86,
+      "n": 11150
+    },
+    {
+      "Year": 1994,
+      "avgAge": 24.47,
+      "n": 1737
+    },
+    {
+      "Year": 1996,
+      "avgAge": 25.48,
+      "n": 10334
+    },
+    {
+      "Year": 1998,
+      "avgAge": 25.27,
+      "n": 2178
+    },
+    {
+      "Year": 2000,
+      "avgAge": 25.83,
+      "n": 10646
+    },
+    {
+      "Year": 2002,
+      "avgAge": 26.06,
+      "n": 2399
+    },
+    {
+      "Year": 2004,
+      "avgAge": 25.95,
+      "n": 10557
+    },
+    {
+      "Year": 2006,
+      "avgAge": 26,
+      "n": 2494
+    },
+    {
+      "Year": 2008,
+      "avgAge": 25.95,
+      "n": 10898
+    },
+    {
+      "Year": 2010,
+      "avgAge": 26.12,
+      "n": 2536
+    },
+    {
+      "Year": 2012,
+      "avgAge": 26.12,
+      "n": 10517
+    },
+    {
+      "Year": 2014,
+      "avgAge": 25.82,
+      "n": 2745
+    },
+    {
+      "Year": 2016,
+      "avgAge": 26.38,
+      "n": 11179
+    }
+  ],
+  "finding6_heightWeightBySport": [
+    {
+      "Sport": "Basketball",
+      "avgHeight": 191.8,
+      "avgWeight": 87.2,
+      "n": 1412
+    },
+    {
+      "Sport": "Volleyball",
+      "avgHeight": 189.9,
+      "avgWeight": 80.4,
+      "n": 1413
+    },
+    {
+      "Sport": "Beach Volleyball",
+      "avgHeight": 186.4,
+      "avgWeight": 79.2,
+      "n": 479
+    },
+    {
+      "Sport": "Rowing",
+      "avgHeight": 185.5,
+      "avgWeight": 80.6,
+      "n": 2744
+    },
+    {
+      "Sport": "Water Polo",
+      "avgHeight": 185.2,
+      "avgWeight": 84.9,
+      "n": 1257
+    },
+    {
+      "Sport": "Handball",
+      "avgHeight": 183.7,
+      "avgWeight": 82,
+      "n": 1674
+    },
+    {
+      "Sport": "Baseball",
+      "avgHeight": 183.2,
+      "avgWeight": 87.3,
+      "n": 570
+    },
+    {
+      "Sport": "Swimming",
+      "avgHeight": 179.9,
+      "avgWeight": 71.9,
+      "n": 4679
+    },
+    {
+      "Sport": "Tennis",
+      "avgHeight": 179.3,
+      "avgWeight": 71.6,
+      "n": 898
+    },
+    {
+      "Sport": "Canoeing",
+      "avgHeight": 178.7,
+      "avgWeight": 76.9,
+      "n": 1638
+    },
+    {
+      "Sport": "Sailing",
+      "avgHeight": 177.4,
+      "avgWeight": 73.6,
+      "n": 1948
+    },
+    {
+      "Sport": "Fencing",
+      "avgHeight": 177.4,
+      "avgWeight": 70.8,
+      "n": 1142
+    },
+    {
+      "Sport": "Taekwondo",
+      "avgHeight": 176.8,
+      "avgWeight": 68.1,
+      "n": 596
+    },
+    {
+      "Sport": "Athletics",
+      "avgHeight": 176.1,
+      "avgWeight": 69.3,
+      "n": 10304
+    },
+    {
+      "Sport": "Modern Pentathlon",
+      "avgHeight": 176.1,
+      "avgWeight": 66.3,
+      "n": 328
+    },
+    {
+      "Sport": "Cycling",
+      "avgHeight": 175.9,
+      "avgWeight": 68.7,
+      "n": 2428
+    },
+    {
+      "Sport": "Rugby Sevens",
+      "avgHeight": 175.4,
+      "avgWeight": 79,
+      "n": 297
+    },
+    {
+      "Sport": "Football",
+      "avgHeight": 174.8,
+      "avgWeight": 69.1,
+      "n": 2169
+    },
+    {
+      "Sport": "Boxing",
+      "avgHeight": 174.5,
+      "avgWeight": 66.4,
+      "n": 1311
+    },
+    {
+      "Sport": "Equestrianism",
+      "avgHeight": 174.5,
+      "avgWeight": 67.6,
+      "n": 977
+    },
+    {
+      "Sport": "Badminton",
+      "avgHeight": 174,
+      "avgWeight": 68.1,
+      "n": 850
+    },
+    {
+      "Sport": "Golf",
+      "avgHeight": 174,
+      "avgWeight": 71.2,
+      "n": 108
+    },
+    {
+      "Sport": "Triathlon",
+      "avgHeight": 173.6,
+      "avgWeight": 61.8,
+      "n": 526
+    },
+    {
+      "Sport": "Archery",
+      "avgHeight": 173.4,
+      "avgWeight": 71.1,
+      "n": 635
+    },
+    {
+      "Sport": "Judo",
+      "avgHeight": 173.3,
+      "avgWeight": 78.1,
+      "n": 1900
+    },
+    {
+      "Sport": "Wrestling",
+      "avgHeight": 173,
+      "avgWeight": 76.9,
+      "n": 1675
+    },
+    {
+      "Sport": "Hockey",
+      "avgHeight": 173,
+      "avgWeight": 68.9,
+      "n": 1847
+    },
+    {
+      "Sport": "Shooting",
+      "avgHeight": 173,
+      "avgWeight": 74.1,
+      "n": 1946
+    },
+    {
+      "Sport": "Table Tennis",
+      "avgHeight": 171.5,
+      "avgWeight": 65.3,
+      "n": 850
+    },
+    {
+      "Sport": "Softball",
+      "avgHeight": 169.6,
+      "avgWeight": 67.9,
+      "n": 358
+    },
+    {
+      "Sport": "Rhythmic Gymnastics",
+      "avgHeight": 168.9,
+      "avgWeight": 49.8,
+      "n": 436
+    },
+    {
+      "Sport": "Synchronized Swimming",
+      "avgHeight": 168.5,
+      "avgWeight": 55.8,
+      "n": 495
+    },
+    {
+      "Sport": "Weightlifting",
+      "avgHeight": 166.7,
+      "avgWeight": 79.2,
+      "n": 1235
+    },
+    {
+      "Sport": "Trampolining",
+      "avgHeight": 166.6,
+      "avgWeight": 59.3,
+      "n": 149
+    },
+    {
+      "Sport": "Diving",
+      "avgHeight": 166.2,
+      "avgWeight": 60.1,
+      "n": 696
+    },
+    {
+      "Sport": "Gymnastics",
+      "avgHeight": 160.6,
+      "avgWeight": 54.6,
+      "n": 947
+    }
+  ],
+  "finding7_femaleShare": [
+    {
+      "Year": 1896,
+      "female": 0,
+      "male": 176,
+      "total": 176,
+      "femaleShare": 0
+    },
+    {
+      "Year": 1900,
+      "female": 23,
+      "male": 1201,
+      "total": 1224,
+      "femaleShare": 1.9
+    },
+    {
+      "Year": 1904,
+      "female": 6,
+      "male": 644,
+      "total": 650,
+      "femaleShare": 0.9
+    },
+    {
+      "Year": 1906,
+      "female": 6,
+      "male": 835,
+      "total": 841,
+      "femaleShare": 0.7
+    },
+    {
+      "Year": 1908,
+      "female": 44,
+      "male": 1980,
+      "total": 2024,
+      "femaleShare": 2.2
+    },
+    {
+      "Year": 1912,
+      "female": 53,
+      "male": 2356,
+      "total": 2409,
+      "femaleShare": 2.2
+    },
+    {
+      "Year": 1920,
+      "female": 78,
+      "male": 2598,
+      "total": 2676,
+      "femaleShare": 2.9
+    },
+    {
+      "Year": 1924,
+      "female": 169,
+      "male": 3400,
+      "total": 3569,
+      "femaleShare": 4.7
+    },
+    {
+      "Year": 1928,
+      "female": 340,
+      "male": 3368,
+      "total": 3708,
+      "femaleShare": 9.2
+    },
+    {
+      "Year": 1932,
+      "female": 222,
+      "male": 1952,
+      "total": 2174,
+      "femaleShare": 10.2
+    },
+    {
+      "Year": 1936,
+      "female": 441,
+      "male": 4711,
+      "total": 5152,
+      "femaleShare": 8.6
+    },
+    {
+      "Year": 1948,
+      "female": 523,
+      "male": 4547,
+      "total": 5070,
+      "femaleShare": 10.3
+    },
+    {
+      "Year": 1952,
+      "female": 630,
+      "male": 4996,
+      "total": 5626,
+      "femaleShare": 11.2
+    },
+    {
+      "Year": 1956,
+      "female": 516,
+      "male": 3652,
+      "total": 4168,
+      "femaleShare": 12.4
+    },
+    {
+      "Year": 1960,
+      "female": 757,
+      "male": 5260,
+      "total": 6017,
+      "femaleShare": 12.6
+    },
+    {
+      "Year": 1964,
+      "female": 880,
+      "male": 5351,
+      "total": 6231,
+      "femaleShare": 14.1
+    },
+    {
+      "Year": 1968,
+      "female": 994,
+      "male": 5724,
+      "total": 6718,
+      "femaleShare": 14.8
+    },
+    {
+      "Year": 1972,
+      "female": 1266,
+      "male": 6856,
+      "total": 8122,
+      "femaleShare": 15.6
+    },
+    {
+      "Year": 1976,
+      "female": 1491,
+      "male": 5710,
+      "total": 7201,
+      "femaleShare": 20.7
+    },
+    {
+      "Year": 1980,
+      "female": 1358,
+      "male": 4972,
+      "total": 6330,
+      "femaleShare": 21.5
+    },
+    {
+      "Year": 1984,
+      "female": 1846,
+      "male": 6225,
+      "total": 8071,
+      "femaleShare": 22.9
+    },
+    {
+      "Year": 1988,
+      "female": 2518,
+      "male": 7361,
+      "total": 9879,
+      "femaleShare": 25.5
+    },
+    {
+      "Year": 1992,
+      "female": 3211,
+      "male": 7976,
+      "total": 11187,
+      "femaleShare": 28.7
+    },
+    {
+      "Year": 1994,
+      "female": 522,
+      "male": 1216,
+      "total": 1738,
+      "femaleShare": 30
+    },
+    {
+      "Year": 1996,
+      "female": 3517,
+      "male": 6822,
+      "total": 10339,
+      "femaleShare": 34
+    },
+    {
+      "Year": 1998,
+      "female": 789,
+      "male": 1390,
+      "total": 2179,
+      "femaleShare": 36.2
+    },
+    {
+      "Year": 2000,
+      "female": 4068,
+      "male": 6579,
+      "total": 10647,
+      "femaleShare": 38.2
+    },
+    {
+      "Year": 2002,
+      "female": 886,
+      "male": 1513,
+      "total": 2399,
+      "femaleShare": 36.9
+    },
+    {
+      "Year": 2004,
+      "female": 4300,
+      "male": 6257,
+      "total": 10557,
+      "femaleShare": 40.7
+    },
+    {
+      "Year": 2006,
+      "female": 955,
+      "male": 1539,
+      "total": 2494,
+      "femaleShare": 38.3
+    },
+    {
+      "Year": 2008,
+      "female": 4609,
+      "male": 6290,
+      "total": 10899,
+      "femaleShare": 42.3
+    },
+    {
+      "Year": 2010,
+      "female": 1033,
+      "male": 1503,
+      "total": 2536,
+      "femaleShare": 40.7
+    },
+    {
+      "Year": 2012,
+      "female": 4654,
+      "male": 5863,
+      "total": 10517,
+      "femaleShare": 44.3
+    },
+    {
+      "Year": 2014,
+      "female": 1102,
+      "male": 1643,
+      "total": 2745,
+      "femaleShare": 40.1
+    },
+    {
+      "Year": 2016,
+      "female": 5034,
+      "male": 6145,
+      "total": 11179,
+      "femaleShare": 45
+    }
+  ],
+  "finding8_latestFemaleEntry": [
+    {
+      "Sport": "Rugby Sevens",
+      "sportFirstYear": 2016,
+      "femaleFirstYear": 2016
+    },
+    {
+      "Sport": "Ski Jumping",
+      "sportFirstYear": 1924,
+      "femaleFirstYear": 2014
+    },
+    {
+      "Sport": "Boxing",
+      "sportFirstYear": 1904,
+      "femaleFirstYear": 2012
+    },
+    {
+      "Sport": "Wrestling",
+      "sportFirstYear": 1896,
+      "femaleFirstYear": 2004
+    },
+    {
+      "Sport": "Bobsleigh",
+      "sportFirstYear": 1924,
+      "femaleFirstYear": 2002
+    },
+    {
+      "Sport": "Skeleton",
+      "sportFirstYear": 1928,
+      "femaleFirstYear": 2002
+    },
+    {
+      "Sport": "Weightlifting",
+      "sportFirstYear": 1896,
+      "femaleFirstYear": 2000
+    },
+    {
+      "Sport": "Water Polo",
+      "sportFirstYear": 1900,
+      "femaleFirstYear": 2000
+    },
+    {
+      "Sport": "Taekwondo",
+      "sportFirstYear": 2000,
+      "femaleFirstYear": 2000
+    },
+    {
+      "Sport": "Modern Pentathlon",
+      "sportFirstYear": 1912,
+      "femaleFirstYear": 2000
+    }
+  ],
+  "finding8_2016gap": [
+    {
+      "Sport": "Boxing",
+      "male": 247,
+      "female": 36,
+      "total": 283,
+      "femaleShare": 12.7
+    },
+    {
+      "Sport": "Wrestling",
+      "male": 234,
+      "female": 112,
+      "total": 346,
+      "femaleShare": 32.4
+    },
+    {
+      "Sport": "Canoeing",
+      "male": 218,
+      "female": 112,
+      "total": 330,
+      "femaleShare": 33.9
+    },
+    {
+      "Sport": "Cycling",
+      "male": 321,
+      "female": 192,
+      "total": 513,
+      "femaleShare": 37.4
+    },
+    {
+      "Sport": "Equestrianism",
+      "male": 125,
+      "female": 75,
+      "total": 200,
+      "femaleShare": 37.5
+    },
+    {
+      "Sport": "Shooting",
+      "male": 239,
+      "female": 151,
+      "total": 390,
+      "femaleShare": 38.7
+    },
+    {
+      "Sport": "Judo",
+      "male": 237,
+      "female": 152,
+      "total": 389,
+      "femaleShare": 39.1
+    },
+    {
+      "Sport": "Rowing",
+      "male": 331,
+      "female": 215,
+      "total": 546,
+      "femaleShare": 39.4
+    },
+    {
+      "Sport": "Water Polo",
+      "male": 154,
+      "female": 104,
+      "total": 258,
+      "femaleShare": 40.3
+    },
+    {
+      "Sport": "Weightlifting",
+      "male": 152,
+      "female": 103,
+      "total": 255,
+      "femaleShare": 40.4
+    },
+    {
+      "Sport": "Football",
+      "male": 270,
+      "female": 203,
+      "total": 473,
+      "femaleShare": 42.9
+    },
+    {
+      "Sport": "Sailing",
+      "male": 217,
+      "female": 163,
+      "total": 380,
+      "femaleShare": 42.9
+    },
+    {
+      "Sport": "Tennis",
+      "male": 105,
+      "female": 91,
+      "total": 196,
+      "femaleShare": 46.4
+    },
+    {
+      "Sport": "Swimming",
+      "male": 504,
+      "female": 438,
+      "total": 942,
+      "femaleShare": 46.5
+    },
+    {
+      "Sport": "Athletics",
+      "male": 1185,
+      "female": 1084,
+      "total": 2269,
+      "femaleShare": 47.8
+    },
+    {
+      "Sport": "Rugby Sevens",
+      "male": 151,
+      "female": 148,
+      "total": 299,
+      "femaleShare": 49.5
+    },
+    {
+      "Sport": "Hockey",
+      "male": 196,
+      "female": 194,
+      "total": 390,
+      "femaleShare": 49.7
+    },
+    {
+      "Sport": "Basketball",
+      "male": 141,
+      "female": 140,
+      "total": 281,
+      "femaleShare": 49.8
+    },
+    {
+      "Sport": "Handball",
+      "male": 177,
+      "female": 176,
+      "total": 353,
+      "femaleShare": 49.9
+    },
+    {
+      "Sport": "Gymnastics",
+      "male": 98,
+      "female": 98,
+      "total": 196,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Diving",
+      "male": 68,
+      "female": 68,
+      "total": 136,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Badminton",
+      "male": 86,
+      "female": 86,
+      "total": 172,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Table Tennis",
+      "male": 86,
+      "female": 86,
+      "total": 172,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Trampolining",
+      "male": 16,
+      "female": 16,
+      "total": 32,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Triathlon",
+      "male": 55,
+      "female": 55,
+      "total": 110,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Modern Pentathlon",
+      "male": 36,
+      "female": 36,
+      "total": 72,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Beach Volleyball",
+      "male": 48,
+      "female": 48,
+      "total": 96,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Golf",
+      "male": 60,
+      "female": 60,
+      "total": 120,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Archery",
+      "male": 64,
+      "female": 64,
+      "total": 128,
+      "femaleShare": 50
+    },
+    {
+      "Sport": "Volleyball",
+      "male": 141,
+      "female": 142,
+      "total": 283,
+      "femaleShare": 50.2
+    },
+    {
+      "Sport": "Fencing",
+      "male": 121,
+      "female": 124,
+      "total": 245,
+      "femaleShare": 50.6
+    },
+    {
+      "Sport": "Taekwondo",
+      "male": 62,
+      "female": 64,
+      "total": 126,
+      "femaleShare": 50.8
+    },
+    {
+      "Sport": "Synchronized Swimming",
+      "male": 0,
+      "female": 102,
+      "total": 102,
+      "femaleShare": 100
+    },
+    {
+      "Sport": "Rhythmic Gymnastics",
+      "male": 0,
+      "female": 96,
+      "total": 96,
+      "femaleShare": 100
+    }
+  ]
+}
