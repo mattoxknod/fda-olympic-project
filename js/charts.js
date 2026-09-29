@@ -83,41 +83,12 @@
   }
 
   // ---------------- Flags ----------------
-  // A small flag chip: a real emoji for current countries, a hand-drawn
-  // swatch for the handful of historical entities (see js/flags.js).
-  function flagChipDOM(noc) {
-    const span = document.createElement("span");
-    span.className = "flag-chip flag-chip-drawn";
-    if (!window.Flags) return span;
-    const f = window.Flags.flagFor(noc);
-    if (f.type === "flag") {
-      const bands = f.spec.bands;
-      const dir = f.spec.orientation === "v" ? "90deg" : "180deg";
-      span.style.background = bands.length > 1
-        ? `linear-gradient(${dir}, ${bands.map((c, i) => `${c} ${(i / bands.length) * 100}% ${((i + 1) / bands.length) * 100}%`).join(",")})`
-        : bands[0];
-    } else {
-      span.classList.add("flag-chip-placeholder");
-    }
-    return span;
-  }
-
-  // Draws a small flag swatch (colored bands + an optional simple accent
-  // shape) directly as SVG marks - no emoji, no external image, renders
-  // identically on every browser/OS. Returns the width it occupied.
-  function drawFlagChipSVG(parent, x, yCenter, noc, size = 16) {
+  // Shared drawing logic (bands + optional accent shape), used both inside
+  // the big charts' own <svg> and inside each small standalone DOM chip, so
+  // every accent type (cross, star, canton, ...) renders identically in
+  // both places rather than the DOM version being a lesser approximation.
+  function drawFlagShape(g, x, yCenter, spec, size) {
     const h = size * 0.68;
-    const g = el("g", {}, parent);
-    if (!window.Flags) return 0;
-    const f = window.Flags.flagFor(noc);
-    if (f.type !== "flag") {
-      el("rect", {
-        x, y: yCenter - h / 2, width: size, height: h, rx: 1.5,
-        fill: "var(--gridline)", stroke: "var(--border)", "stroke-width": 1,
-      }, g);
-      return size + 6;
-    }
-    const spec = f.spec;
     const bands = spec.bands;
     const vertical = spec.orientation === "v";
     const y0 = yCenter - h / 2;
@@ -146,6 +117,11 @@
             fill: a.color,
           }, g);
           break;
+        case "canton":
+          el("rect", {
+            x, y: y0, width: size * (a.w || 0.42), height: h * (a.h || 0.55), fill: a.color,
+          }, g);
+          break;
         case "cross":
           el("rect", { x: cx - size * 0.09, y: y0, width: size * 0.18, height: h, fill: a.color }, g);
           el("rect", { x, y: cy - h * 0.14, width: size, height: h * 0.28, fill: a.color }, g);
@@ -159,6 +135,47 @@
           break;
       }
     }
+  }
+
+  // A small flag chip for plain-DOM contexts (legend, table, dropdown):
+  // its own tiny standalone <svg>, using the same drawFlagShape as the
+  // charts so every accent type renders identically everywhere.
+  function flagChipDOM(noc) {
+    const span = document.createElement("span");
+    span.className = "flag-chip flag-chip-drawn";
+    if (!window.Flags) return span;
+    const f = window.Flags.flagFor(noc);
+    const size = 16, h = size * 0.68;
+    const svg = el("svg", { viewBox: `0 0 ${size} ${h}`, width: size, height: h });
+    if (f.type === "flag") {
+      drawFlagShape(svg, 0, h / 2, f.spec, size);
+    } else {
+      el("rect", {
+        x: 0, y: 0, width: size, height: h, rx: 1.5,
+        fill: "var(--gridline)", stroke: "var(--border)", "stroke-width": 1,
+      }, svg);
+      span.classList.add("flag-chip-placeholder");
+    }
+    span.appendChild(svg);
+    return span;
+  }
+
+  // Draws a small flag swatch inside one of the big charts' own <svg> -
+  // no emoji, no external image, renders identically on every browser/OS.
+  // Returns the width it occupied.
+  function drawFlagChipSVG(parent, x, yCenter, noc, size = 16) {
+    const h = size * 0.68;
+    const g = el("g", {}, parent);
+    if (!window.Flags) return 0;
+    const f = window.Flags.flagFor(noc);
+    if (f.type !== "flag") {
+      el("rect", {
+        x, y: yCenter - h / 2, width: size, height: h, rx: 1.5,
+        fill: "var(--gridline)", stroke: "var(--border)", "stroke-width": 1,
+      }, g);
+      return size + 6;
+    }
+    drawFlagShape(g, x, yCenter, f.spec, size);
     return size + 6;
   }
 

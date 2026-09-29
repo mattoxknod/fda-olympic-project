@@ -101,7 +101,13 @@
       sphere.attr("r", baseScale * zoomK);
       graticulePath.attr("d", path(graticule));
 
-      const countries = countryLayer.selectAll("path").data(worldData, (d) => d.id);
+      // Keyed by name, not d.id: geoStitch doesn't reliably preserve the
+      // original topojson id, and a broken/undefined key here means the
+      // data join can't match old elements to new data - every render call
+      // (which happens on every drag tick) then ADDS a fresh duplicate path
+      // instead of updating the existing one, and the stacked duplicates
+      // visually read as stray lines/noise once enough of them pile up.
+      const countries = countryLayer.selectAll("path").data(worldData, (d) => d.properties.name);
       countries.enter().append("path")
         .attr("class", "globe-country")
         .merge(countries)
@@ -211,6 +217,10 @@
       .then((r) => r.json())
       .then((topology) => {
         let fc = window.topojson.feature(topology, topology.objects.countries);
+        // Antarctica has no NOC of its own (irrelevant to medal data) and is
+        // a frequent source of orthographic-projection rendering glitches at
+        // the pole - simplest fix is to just not draw it.
+        fc.features = fc.features.filter((f) => f.properties.name !== "Antarctica");
         // Countries that cross the antimeridian (Russia, Fiji, the US via the
         // Aleutians) otherwise draw a spurious straight line across the
         // globe once clipAngle(90) cuts through them mid-rotation. geoStitch

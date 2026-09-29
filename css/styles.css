@@ -448,16 +448,13 @@ footer.site-footer {
 }
 .flag-chip-drawn {
   width: 16px;
-  height: 11px;
-  border-radius: 2px;
-  border: 1px solid var(--border);
+  height: 10.88px;
+  line-height: 0;
 }
-.flag-chip-placeholder {
-  width: 16px;
-  height: 11px;
-  border-radius: 2px;
-  background: var(--gridline);
-  border: 1px solid var(--border);
+.flag-chip-drawn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 td.country-cell {
   white-space: nowrap;

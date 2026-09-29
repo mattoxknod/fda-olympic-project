@@ -80,13 +80,25 @@ One row is one athlete's participation in one event at one Olympic Games (Summer
   country code used throughout the dataset.
 - All numbers are reproducible by running `node scripts/analyze.js`, which reads
   `data/athlete_events.csv` and regenerates `scripts/findings.json` from scratch.
-- **Flags** (`js/flags.js`) are drawn directly as colored SVG/CSS bands rather than using Unicode
-  flag emoji, since emoji flags depend on the viewer's OS having a color-emoji font and don't
-  render reliably inside SVG text across browsers. Coverage is curated, not exhaustive; a country
-  without a defined flag shows a neutral placeholder rather than an incorrect one. A few defunct
-  entities that appear in the data as their own NOC code get their own historical flag distinct
-  from their modern successor's - the Soviet Union (URS) and East Germany (GDR) in particular.
-  Chinese Taipei (TPE) is deliberately not mapped to a national flag, since it competes at the
-  Olympics under a neutral banner rather than any country's flag. No flag for any Nazi-era German
-  NOC entry is drawn or was considered; the "GER" code here spans every German era in one bucket
-  (pre-war through today) and always shows modern Germany's flag.
+- **Flags** (`js/flags.js`) are drawn directly as colored SVG/CSS bands + a simple accent shape
+  (star, cross, canton, crescent, ...) rather than using Unicode flag emoji, since emoji flags
+  depend on the viewer's OS having a color-emoji font and don't render reliably inside SVG text
+  across browsers. Every entry was checked by hand against its real flag; colors and the general
+  layout (stripe direction, canton, cross, etc.) are accurate, though flags with genuinely complex
+  geometry (a diagonal saltire, a quartered field, a coat of arms) are necessarily simplified to
+  what bands-plus-one-accent-shape can represent - a documented simplification, not a wrong flag.
+  Coverage is curated, not exhaustive; a country without a defined flag shows a neutral placeholder
+  rather than an incorrect one. A few defunct entities that appear in the data as their own NOC
+  code get their own historical flag distinct from their modern successor's - the Soviet Union
+  (URS) and East Germany (GDR) in particular. Chinese Taipei (TPE) is deliberately not mapped to a
+  national flag, since it competes at the Olympics under a neutral banner rather than any
+  country's flag. No flag for any Nazi-era German NOC entry is drawn or was considered; the "GER"
+  code here spans every German era in one bucket (pre-war through today) and always shows modern
+  Germany's flag.
+- **The globe's country fill can develop visual noise while dragging/auto-rotating** if the SVG
+  data join's key function doesn't survive `d3.geoStitch` (used to fix antimeridian rendering,
+  below) - a broken key means every render adds a fresh duplicate element instead of updating the
+  existing one, and the pile-up reads as stray lines once enough duplicates stack up. Fixed by
+  keying the join on the country name (stable across geoStitch) instead of the topojson id (not
+  reliably preserved by it). Antarctica is also excluded from the globe entirely - no NOC of its
+  own, and a common source of polar rendering glitches in an orthographic projection.
