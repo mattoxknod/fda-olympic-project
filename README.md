@@ -24,6 +24,16 @@ _(link added once published with GitHub Pages)_
 | `js/noc-names.js` | Maps Olympic country codes (NOC) to readable names for the charts. |
 | `js/csv.js` | Quoted-CSV parser used by the dashboard to load `athlete_events.csv` directly in the browser. |
 | `js/flags.js` | Hand-drawn flag data (colored bands + a simple accent shape) for country/historical-entity chips used throughout both pages. |
+| `js/globe.js` | Renders the interactive globe on the report page (D3 orthographic projection): drag to rotate, hover a country for its all-time medal/athlete totals, hover a host-city marker for that Games' top 3 countries. |
+| `js/globe-countries.js` | Maps NOC codes to the country name strings used in `data/countries-110m.json`, so the globe can join medal/athlete stats to map shapes. |
+| `data/countries-110m.json` | World country boundaries (Natural Earth, 110m resolution, via the `world-atlas` npm package) used to draw the globe. |
+
+## External libraries
+
+Both `index.html` and `dashboard.html` are otherwise plain HTML/CSS/JS. The one exception is the
+report page's globe, which loads [D3](https://d3js.org/) and
+[topojson-client](https://github.com/topojson/topojson-client) from a CDN (jsDelivr) to handle the
+map projection and TopoJSON parsing.
 
 ## Data source
 

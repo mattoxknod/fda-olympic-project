@@ -2,6 +2,12 @@
   const res = await fetch("scripts/findings.json");
   const data = await res.json();
 
+  // ---------- Globe ----------
+  const globeContainer = document.getElementById("globe-container");
+  if (globeContainer && window.Globe) {
+    Globe.init(globeContainer, { countryStats: data.countryStats, hostCities: data.hostCities });
+  }
+
   // ---------- Headline numbers ----------
   const fmt = (n) => n.toLocaleString();
   document.getElementById("stat-events").textContent = fmt(data.headline.totalAthleteEvents);

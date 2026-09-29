@@ -310,6 +310,94 @@ const finding8_2016gap = Object.entries(sexCounts2016)
   }))
   .sort((a, b) => a.femaleShare - b.femaleShare);
 
+// --- Globe: all-time stats per country (every NOC, not just the top 15) ---
+const athletesByNocSet = new Map(); // NOC -> Set of athlete IDs
+for (const d of data) {
+  if (!athletesByNocSet.has(d.NOC)) athletesByNocSet.set(d.NOC, new Set());
+  athletesByNocSet.get(d.NOC).add(d.ID);
+}
+const medalsByNocCount = new Map();
+for (const m of medalRecords) {
+  medalsByNocCount.set(m.NOC, (medalsByNocCount.get(m.NOC) || 0) + 1);
+}
+const allNocs = new Set([...athletesByNocSet.keys(), ...medalsByNocCount.keys()]);
+const countryStats = Array.from(allNocs).map((NOC) => ({
+  NOC,
+  athletes: athletesByNocSet.get(NOC) ? athletesByNocSet.get(NOC).size : 0,
+  medals: medalsByNocCount.get(NOC) || 0,
+})).sort((a, b) => b.medals - a.medals);
+
+// --- Globe: host city + top 3 countries for every Games ---
+const CITY_COORDS = {
+  Athina: [37.9838, 23.7275],
+  Paris: [48.8566, 2.3522],
+  "St. Louis": [38.627, -90.1994],
+  London: [51.5074, -0.1278],
+  Stockholm: [59.3293, 18.0686],
+  Antwerpen: [51.2194, 4.4025],
+  Chamonix: [45.9237, 6.8694],
+  Amsterdam: [52.3676, 4.9041],
+  "Sankt Moritz": [46.4908, 9.8355],
+  "Los Angeles": [34.0522, -118.2437],
+  "Lake Placid": [44.2795, -73.9799],
+  Berlin: [52.52, 13.405],
+  "Garmisch-Partenkirchen": [47.4924, 11.0956],
+  Helsinki: [60.1699, 24.9384],
+  Oslo: [59.9139, 10.7522],
+  Melbourne: [-37.8136, 144.9631],
+  "Cortina d'Ampezzo": [46.5405, 12.1357],
+  Roma: [41.9028, 12.4964],
+  "Squaw Valley": [39.1969, -120.2358],
+  Tokyo: [35.6762, 139.6503],
+  Innsbruck: [47.2692, 11.4041],
+  "Mexico City": [19.4326, -99.1332],
+  Grenoble: [45.1885, 5.7245],
+  Munich: [48.1351, 11.582],
+  Sapporo: [43.0618, 141.3545],
+  Montreal: [45.5019, -73.5674],
+  Moskva: [55.7558, 37.6173],
+  Sarajevo: [43.8563, 18.4131],
+  Seoul: [37.5665, 126.978],
+  Calgary: [51.0447, -114.0719],
+  Barcelona: [41.3874, 2.1686],
+  Albertville: [45.6764, 6.3921],
+  Lillehammer: [61.1153, 10.4662],
+  Atlanta: [33.749, -84.388],
+  Nagano: [36.6513, 138.181],
+  Sydney: [-33.8688, 151.2093],
+  "Salt Lake City": [40.7608, -111.891],
+  Torino: [45.0703, 7.6869],
+  Beijing: [39.9042, 116.4074],
+  Vancouver: [49.2827, -123.1207],
+  Sochi: [43.6028, 39.7342],
+  "Rio de Janeiro": [-22.9068, -43.1729],
+};
+const gamesInfo = new Map(); // Games -> { Year, Season, City }
+for (const d of data) {
+  if (!gamesInfo.has(d.Games)) {
+    gamesInfo.set(d.Games, { Year: d.Year, Season: d.Season, City: d.City });
+  }
+}
+const medalsByGamesNoc = new Map(); // Games -> Map(NOC -> count)
+for (const m of medalRecords) {
+  if (!medalsByGamesNoc.has(m.Games)) medalsByGamesNoc.set(m.Games, new Map());
+  const inner = medalsByGamesNoc.get(m.Games);
+  inner.set(m.NOC, (inner.get(m.NOC) || 0) + 1);
+}
+const hostCities = Array.from(gamesInfo.entries()).map(([Games, info]) => {
+  const coords = CITY_COORDS[info.City];
+  const nocCounts = medalsByGamesNoc.get(Games) || new Map();
+  const top3 = Array.from(nocCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([NOC, medals]) => ({ NOC, medals }));
+  return {
+    Games, Year: info.Year, Season: info.Season, City: info.City,
+    lat: coords ? coords[0] : null, lon: coords ? coords[1] : null,
+    top3,
+  };
+}).sort((a, b) => a.Year - b.Year || a.Season.localeCompare(b.Season));
+
 const results = {
   headline,
   finding1_leaderboard,
@@ -321,6 +409,8 @@ const results = {
   finding7_femaleShare,
   finding8_latestFemaleEntry,
   finding8_2016gap,
+  countryStats,
+  hostCities,
 };
 
 fs.writeFileSync(

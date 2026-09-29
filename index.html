@@ -21,24 +21,30 @@
 <main>
   <header class="report-header">
     <div class="header-inner">
-      <h1>
-        <svg class="olympic-rings" width="44" height="24" viewBox="0 0 120 62" aria-hidden="true">
-          <circle cx="20" cy="20" r="18" stroke="var(--ring-blue)" />
-          <circle cx="60" cy="20" r="18" stroke="var(--ring-black)" />
-          <circle cx="100" cy="20" r="18" stroke="var(--ring-red)" />
-          <circle cx="40" cy="40" r="18" stroke="var(--ring-yellow)" />
-          <circle cx="80" cy="40" r="18" stroke="var(--ring-green)" />
-        </svg>
-        120 Years of Olympic Data
-      </h1>
-      <p class="byline">Mattox Knod &middot; Financial Data Analytics</p>
-      <p class="summary">
-        This report explores 271,116 athlete-event records spanning every Olympic Games from
-        Athens 1896 to Rio 2016, Summer and Winter combined. It looks at which countries have
-        dominated the medal table and how that has shifted over time, how physically different
-        Olympic sports are from one another, and how the Games went from an almost entirely male
-        event to one approaching gender parity.
-      </p>
+      <div class="header-text">
+        <h1>
+          <svg class="olympic-rings" width="44" height="24" viewBox="0 0 120 62" aria-hidden="true">
+            <circle cx="20" cy="20" r="18" stroke="var(--ring-blue)" />
+            <circle cx="60" cy="20" r="18" stroke="var(--ring-black)" />
+            <circle cx="100" cy="20" r="18" stroke="var(--ring-red)" />
+            <circle cx="40" cy="40" r="18" stroke="var(--ring-yellow)" />
+            <circle cx="80" cy="40" r="18" stroke="var(--ring-green)" />
+          </svg>
+          120 Years of Olympic Data
+        </h1>
+        <p class="byline">Mattox Knod &middot; Financial Data Analytics</p>
+        <p class="summary">
+          This report explores 271,116 athlete-event records spanning every Olympic Games from
+          Athens 1896 to Rio 2016, Summer and Winter combined. It looks at which countries have
+          dominated the medal table and how that has shifted over time, how physically different
+          Olympic sports are from one another, and how the Games went from an almost entirely male
+          event to one approaching gender parity.
+        </p>
+      </div>
+      <div class="header-globe">
+        <div id="globe-container" aria-label="Interactive globe: hover a country for its all-time medal and athlete totals, hover a red marker for that city's host year(s) and top 3 countries"></div>
+        <p class="globe-caption">Drag to rotate &middot; hover a country or a host-city marker</p>
+      </div>
     </div>
   </header>
 
@@ -215,6 +221,16 @@
         drops any sport with fewer than 30 athlete-Games in that window.
       </li>
       <li>
+        <strong>The globe</strong> colors each country by its all-time de-duplicated medal count
+        (log-scaled, since the United States so heavily outweighs most countries) and shows
+        unique athletes on hover. Host-city markers rank that Games' "top 3" by total medal
+        count, the same method used everywhere else in this report &mdash; not the gold-first
+        tiebreak the IOC's official medal table uses, which can rank countries differently.
+        Country coverage on the globe is not exhaustive: small territories and historical
+        entities (e.g. the Soviet Union) without a matching present-day land boundary are
+        simply left uncolored rather than guessed at.
+      </li>
+      <li>
         <strong>Country groupings use the NOC column</strong>, not Team, since Team includes
         individual crew/club names (e.g. multi-boat sailing entries) while NOC is the
         standardized country code used throughout the dataset.
@@ -238,4 +254,8 @@
 <script src="js/noc-names.js"></script>
 <script src="js/flags.js"></script>
 <script src="js/charts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="js/globe-countries.js"></script>
+<script src="js/globe.js"></script>
 <script src="js/report.js"></script>
