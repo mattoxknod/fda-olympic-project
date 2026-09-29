@@ -22,6 +22,7 @@ _(link added once published with GitHub Pages)_
 | `scripts/dev-server.js` | Tiny local static file server used only for testing (`node scripts/dev-server.js`). Not part of the published site. |
 | `js/charts.js` | Small dependency-free SVG chart library (bar, line, dumbbell, scatter, diverging bar) shared by both pages. |
 | `js/noc-names.js` | Maps Olympic country codes (NOC) to readable names for the charts. |
+| `js/csv.js` | Quoted-CSV parser used by the dashboard to load `athlete_events.csv` directly in the browser. |
 
 ## Data source
 

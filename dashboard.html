@@ -1,0 +1,103 @@
+<title>Olympic Data Dashboard</title>
+<link rel="stylesheet" href="css/styles.css" />
+
+<nav class="site-nav">
+  <a class="brand" href="index.html">120 Years of Olympic Data</a>
+  <div class="links">
+    <a class="nav-link" href="index.html">Report</a>
+    <a class="nav-link" href="dashboard.html" aria-current="page">Dashboard</a>
+  </div>
+</nav>
+
+<main>
+  <header class="dashboard-header">
+    <h1>Explore the data</h1>
+    <p class="summary">
+      Filter 271,116 Olympic athlete-event records by season, sex, sport, country, and year.
+      Every number below &mdash; the summary stats, the charts, and the table &mdash; is computed
+      live in your browser from the raw data file, and updates as you change the filters.
+    </p>
+  </header>
+
+  <p id="load-status" style="color:var(--text-secondary);">Loading data/athlete_events.csv (41.5MB)&hellip;</p>
+
+  <div id="dashboard-content" hidden>
+    <div class="filter-row">
+      <div class="filter-field">
+        <label for="f-season">Season</label>
+        <select id="f-season"></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-sex">Sex</label>
+        <select id="f-sex"></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-sport">Sport</label>
+        <select id="f-sport"></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-noc">Country</label>
+        <select id="f-noc"></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-year-from">From year</label>
+        <select id="f-year-from"></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-year-to">To year</label>
+        <select id="f-year-to"></select>
+      </div>
+      <button class="btn-reset" id="btn-reset" type="button">Reset all filters</button>
+    </div>
+
+    <section class="stat-row" aria-label="Summary numbers for the current filters">
+      <div class="stat-tile">
+        <div class="value" id="stat-events">-</div>
+        <div class="label">Athlete-event records in view</div>
+      </div>
+      <div class="stat-tile">
+        <div class="value" id="stat-athletes">-</div>
+        <div class="label">Unique athletes in view</div>
+      </div>
+      <div class="stat-tile">
+        <div class="value" id="stat-medals">-</div>
+        <div class="label">Medals in view (de-duplicated)</div>
+      </div>
+      <div class="stat-tile">
+        <div class="value" id="stat-age">-</div>
+        <div class="label">Average age in view</div>
+      </div>
+    </section>
+
+    <h2 class="section-title">Charts</h2>
+    <p class="section-sub">Each chart has its own measure and breakdown switch &mdash; both respond to the filters above.</p>
+    <div class="dashboard-grid" id="dashboard-grid"></div>
+
+    <h2 class="section-title">Data behind this view</h2>
+    <p class="section-sub" id="table-note"></p>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Athlete-events</th>
+            <th>Athletes</th>
+            <th>Medals</th>
+            <th>Avg age</th>
+            <th>Female %</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  Data: 120 years of Olympic history (Kaggle / sports-reference.com, via Zenodo). Built for a
+  Financial Data Analytics course project.
+</footer>
+
+<script src="js/csv.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/dashboard.js"></script>
