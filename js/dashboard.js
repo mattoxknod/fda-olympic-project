@@ -107,6 +107,7 @@
     }
     let entries = Array.from(groups.entries()).map(([label, rows]) => ({
       label, value: measureValue(rows, measure), rows,
+      noc: breakdown === "noc" ? rows[0].NOC : undefined,
     }));
     entries.sort((a, b) => b.value - a.value);
 
@@ -174,7 +175,7 @@
     }
     Charts.barChart({
       container,
-      data: entries.map((e) => ({ label: e.label, value: e.value })),
+      data: entries.map((e) => ({ label: e.label, value: e.value, noc: e.noc })),
       valueFormat: valueFormatter(measure),
       colorIndex: i * 2,
       height: Math.max(140, entries.length * 32 + 16),
@@ -220,8 +221,16 @@
 
     rows.forEach((r) => {
       const tr = document.createElement("tr");
+
+      const nameTd = document.createElement("td");
+      nameTd.className = "country-cell";
+      if (window.Charts && window.Charts.flagChipDOM) {
+        nameTd.appendChild(Charts.flagChipDOM(r.noc));
+      }
+      nameTd.appendChild(document.createTextNode(r.name));
+      tr.appendChild(nameTd);
+
       const cells = [
-        r.name,
         r.events.toLocaleString(),
         r.athletes.toLocaleString(),
         r.medals.toLocaleString(),
@@ -311,6 +320,9 @@
       .map((s) => ({ value: s, label: s }));
     populateSelect(document.getElementById("f-sport"), sports, { allLabel: "All sports" });
 
+    // Native <select><option> text can't carry the drawn flag swatches (no
+    // inline elements inside an option), so this stays plain text; flags
+    // appear on the charts, legend, and table below instead.
     const nocs = Array.from(new Set(allRows.map((r) => r.NOC))).sort((a, b) =>
       nocLabel(a).localeCompare(nocLabel(b))
     ).map((n) => ({ value: n, label: nocLabel(n) }));

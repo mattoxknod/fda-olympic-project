@@ -2,7 +2,16 @@
 <link rel="stylesheet" href="css/styles.css" />
 
 <nav class="site-nav">
-  <a class="brand" href="index.html">120 Years of Olympic Data</a>
+  <a class="brand" href="index.html">
+    <svg class="olympic-rings" width="34" height="18" viewBox="0 0 120 62" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" stroke="var(--ring-blue)" />
+      <circle cx="60" cy="20" r="18" stroke="var(--ring-black)" />
+      <circle cx="100" cy="20" r="18" stroke="var(--ring-red)" />
+      <circle cx="40" cy="40" r="18" stroke="var(--ring-yellow)" />
+      <circle cx="80" cy="40" r="18" stroke="var(--ring-green)" />
+    </svg>
+    120 Years of Olympic Data
+  </a>
   <div class="links">
     <a class="nav-link" href="index.html">Report</a>
     <a class="nav-link" href="dashboard.html" aria-current="page">Dashboard</a>
@@ -11,7 +20,16 @@
 
 <main>
   <header class="dashboard-header">
-    <h1>Explore the data</h1>
+    <h1>
+      <svg class="olympic-rings" width="38" height="20" viewBox="0 0 120 62" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="var(--ring-blue)" />
+        <circle cx="60" cy="20" r="18" stroke="var(--ring-black)" />
+        <circle cx="100" cy="20" r="18" stroke="var(--ring-red)" />
+        <circle cx="40" cy="40" r="18" stroke="var(--ring-yellow)" />
+        <circle cx="80" cy="40" r="18" stroke="var(--ring-green)" />
+      </svg>
+      Explore the data
+    </h1>
     <p class="summary">
       Filter 271,116 Olympic athlete-event records by season, sex, sport, country, and year.
       Every number below &mdash; the summary stats, the charts, and the table &mdash; is computed
@@ -99,5 +117,6 @@
 </footer>
 
 <script src="js/csv.js"></script>
+<script src="js/flags.js"></script>
 <script src="js/charts.js"></script>
 <script src="js/dashboard.js"></script>

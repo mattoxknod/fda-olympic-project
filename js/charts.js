@@ -70,13 +70,96 @@
       const swatch = document.createElement("span");
       swatch.className = item.shape === "rect" ? "swatch-rect" : "swatch-line";
       swatch.style.background = item.color;
+      row.appendChild(swatch);
+      if (item.noc && window.Flags) {
+        row.appendChild(flagChipDOM(item.noc));
+      }
       const label = document.createElement("span");
       label.textContent = item.label;
-      row.appendChild(swatch);
       row.appendChild(label);
       legend.appendChild(row);
     });
     container.appendChild(legend);
+  }
+
+  // ---------------- Flags ----------------
+  // A small flag chip: a real emoji for current countries, a hand-drawn
+  // swatch for the handful of historical entities (see js/flags.js).
+  function flagChipDOM(noc) {
+    const span = document.createElement("span");
+    span.className = "flag-chip flag-chip-drawn";
+    if (!window.Flags) return span;
+    const f = window.Flags.flagFor(noc);
+    if (f.type === "flag") {
+      const bands = f.spec.bands;
+      const dir = f.spec.orientation === "v" ? "90deg" : "180deg";
+      span.style.background = bands.length > 1
+        ? `linear-gradient(${dir}, ${bands.map((c, i) => `${c} ${(i / bands.length) * 100}% ${((i + 1) / bands.length) * 100}%`).join(",")})`
+        : bands[0];
+    } else {
+      span.classList.add("flag-chip-placeholder");
+    }
+    return span;
+  }
+
+  // Draws a small flag swatch (colored bands + an optional simple accent
+  // shape) directly as SVG marks - no emoji, no external image, renders
+  // identically on every browser/OS. Returns the width it occupied.
+  function drawFlagChipSVG(parent, x, yCenter, noc, size = 16) {
+    const h = size * 0.68;
+    const g = el("g", {}, parent);
+    if (!window.Flags) return 0;
+    const f = window.Flags.flagFor(noc);
+    if (f.type !== "flag") {
+      el("rect", {
+        x, y: yCenter - h / 2, width: size, height: h, rx: 1.5,
+        fill: "var(--gridline)", stroke: "var(--border)", "stroke-width": 1,
+      }, g);
+      return size + 6;
+    }
+    const spec = f.spec;
+    const bands = spec.bands;
+    const vertical = spec.orientation === "v";
+    const y0 = yCenter - h / 2;
+    bands.forEach((color, i) => {
+      const bandSize = (vertical ? size : h) / bands.length;
+      const attrs = vertical
+        ? { x: x + i * bandSize, y: y0, width: bandSize + 0.5, height: h }
+        : { x, y: y0 + i * bandSize, width: size, height: bandSize + 0.5 };
+      el("rect", { ...attrs, fill: color }, g);
+    });
+    el("rect", {
+      x, y: y0, width: size, height: h, fill: "none",
+      stroke: "var(--border)", "stroke-width": 1,
+    }, g);
+    if (spec.accent) {
+      const cx = x + size / 2, cy = yCenter;
+      const a = spec.accent;
+      switch (a.type) {
+        case "star":
+        case "circle":
+          el("circle", { cx, cy, r: a.r || 2.2, fill: a.color }, g);
+          break;
+        case "diamond":
+          el("polygon", {
+            points: `${cx},${cy - h * 0.28} ${cx + size * 0.22},${cy} ${cx},${cy + h * 0.28} ${cx - size * 0.22},${cy}`,
+            fill: a.color,
+          }, g);
+          break;
+        case "cross":
+          el("rect", { x: cx - size * 0.09, y: y0, width: size * 0.18, height: h, fill: a.color }, g);
+          el("rect", { x, y: cy - h * 0.14, width: size, height: h * 0.28, fill: a.color }, g);
+          break;
+        case "triangle":
+          el("polygon", { points: `${x},${y0} ${x},${y0 + h} ${x + size * 0.38},${cy}`, fill: a.color }, g);
+          break;
+        case "crescent":
+          el("circle", { cx, cy, r: h * 0.28, fill: a.color }, g);
+          el("circle", { cx: cx + h * 0.12, cy, r: h * 0.22, fill: bands[0] }, g);
+          break;
+      }
+    }
+    return size + 6;
   }
 
   // ---------------- Bar chart (horizontal, sorted, single hue) ----------------
@@ -85,6 +168,8 @@
     const width = 640;
     const barHeight = 22;
     const gap = 10;
+    const hasFlags = data.some((d) => d.noc);
+    const flagAreaWidth = hasFlags ? 22 : 0;
     const leftLabelWidth = 150;
     const h = height || data.length * (barHeight + gap) + 20;
     const plotWidth = width - leftLabelWidth - 60;
@@ -96,8 +181,11 @@
     data.forEach((d, i) => {
       const y = i * (barHeight + gap) + 8;
       const barW = (d.value / max) * plotWidth;
+      if (d.noc) {
+        drawFlagChipSVG(svg, leftLabelWidth - 10 - flagAreaWidth + 4, y + barHeight / 2, d.noc, 15);
+      }
       el("text", {
-        x: leftLabelWidth - 10, y: y + barHeight / 2 + 4, "text-anchor": "end",
+        x: leftLabelWidth - 10 - flagAreaWidth, y: y + barHeight / 2 + 4, "text-anchor": "end",
         class: "chart-axis",
       }, svg).textContent = d.label;
 
@@ -227,7 +315,7 @@
   function lineChart({ container, series, xFormat, yFormat, height = 300, yMinZero = true }) {
     container.innerHTML = "";
     buildLegend(container, series.map((s, i) => ({
-      label: s.name, color: seriesColor(i), shape: "line",
+      label: s.name, color: seriesColor(i), shape: "line", noc: s.noc,
     })));
     const width = 640;
     const margin = { top: 14, right: 16, bottom: 28, left: 46 };
@@ -347,6 +435,8 @@
     ]);
     const width = 640;
     const rowH = 30;
+    const hasFlags = data.some((d) => d.noc);
+    const flagAreaWidth = hasFlags ? 22 : 0;
     const leftLabelWidth = 150;
     const h = height || data.length * rowH + 20;
     const plotWidth = width - leftLabelWidth - 60;
@@ -357,8 +447,11 @@
 
     data.forEach((d, i) => {
       const y = i * rowH + 12;
+      if (d.noc) {
+        drawFlagChipSVG(svg, leftLabelWidth - 10 - flagAreaWidth + 4, y, d.noc, 15);
+      }
       el("text", {
-        x: leftLabelWidth - 10, y: y + 4, "text-anchor": "end", class: "chart-axis",
+        x: leftLabelWidth - 10 - flagAreaWidth, y: y + 4, "text-anchor": "end", class: "chart-axis",
       }, svg).textContent = d.label;
 
       el("line", {
@@ -478,5 +571,5 @@
     function hideTip() { tip.classList.remove("visible"); }
   }
 
-  global.Charts = { barChart, divergingBarChart, lineChart, dumbbellChart, scatterChart, seriesColor, formatNumber };
+  global.Charts = { barChart, divergingBarChart, lineChart, dumbbellChart, scatterChart, seriesColor, formatNumber, flagChipDOM };
 })(window);

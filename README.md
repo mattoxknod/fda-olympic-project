@@ -23,6 +23,7 @@ _(link added once published with GitHub Pages)_
 | `js/charts.js` | Small dependency-free SVG chart library (bar, line, dumbbell, scatter, diverging bar) shared by both pages. |
 | `js/noc-names.js` | Maps Olympic country codes (NOC) to readable names for the charts. |
 | `js/csv.js` | Quoted-CSV parser used by the dashboard to load `athlete_events.csv` directly in the browser. |
+| `js/flags.js` | Hand-drawn flag data (colored bands + a simple accent shape) for country/historical-entity chips used throughout both pages. |
 
 ## Data source
 
@@ -67,3 +68,13 @@ One row is one athlete's participation in one event at one Olympic Games (Summer
   country code used throughout the dataset.
 - All numbers are reproducible by running `node scripts/analyze.js`, which reads
   `data/athlete_events.csv` and regenerates `scripts/findings.json` from scratch.
+- **Flags** (`js/flags.js`) are drawn directly as colored SVG/CSS bands rather than using Unicode
+  flag emoji, since emoji flags depend on the viewer's OS having a color-emoji font and don't
+  render reliably inside SVG text across browsers. Coverage is curated, not exhaustive; a country
+  without a defined flag shows a neutral placeholder rather than an incorrect one. A few defunct
+  entities that appear in the data as their own NOC code get their own historical flag distinct
+  from their modern successor's - the Soviet Union (URS) and East Germany (GDR) in particular.
+  Chinese Taipei (TPE) is deliberately not mapped to a national flag, since it competes at the
+  Olympics under a neutral banner rather than any country's flag. No flag for any Nazi-era German
+  NOC entry is drawn or was considered; the "GER" code here spans every German era in one bucket
+  (pre-war through today) and always shows modern Germany's flag.

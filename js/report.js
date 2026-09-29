@@ -12,7 +12,7 @@
   // ---------- Finding 1: all-time medal leaderboard ----------
   Charts.barChart({
     container: document.getElementById("chart-leaderboard"),
-    data: data.finding1_leaderboard.map((d) => ({ label: nocName(d.NOC), value: d.total })),
+    data: data.finding1_leaderboard.map((d) => ({ label: nocName(d.NOC), value: d.total, noc: d.NOC })),
     colorIndex: 0,
   });
 
@@ -22,6 +22,7 @@
     container: document.getElementById("chart-trend"),
     series: top6.map((noc) => ({
       name: nocName(noc),
+      noc,
       points: data.finding2_trend
         .filter((d) => d.NOC === noc)
         .map((d) => ({ x: d.Year, y: d.medals })),
@@ -49,6 +50,7 @@
       label: `${nocName(d.NOC)} ${d.hostYear}`,
       before: d.avgOtherYears,
       after: d.hostMedals,
+      noc: d.NOC,
     })),
     beforeLabel: "Average, other Games",
     afterLabel: "Host-year medals",
