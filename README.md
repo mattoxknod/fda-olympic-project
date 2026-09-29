@@ -19,6 +19,9 @@ _(link added once published with GitHub Pages)_
 | `data/athlete_events.csv` | The dataset (see below). |
 | `scripts/analyze.js` | Node script that computes every number used in the report directly from `athlete_events.csv`. Run with `node scripts/analyze.js`. |
 | `scripts/findings.json` | Output of `analyze.js` — the numbers behind each report section, in one place for reference. |
+| `scripts/dev-server.js` | Tiny local static file server used only for testing (`node scripts/dev-server.js`). Not part of the published site. |
+| `js/charts.js` | Small dependency-free SVG chart library (bar, line, dumbbell, scatter, diverging bar) shared by both pages. |
+| `js/noc-names.js` | Maps Olympic country codes (NOC) to readable names for the charts. |
 
 ## Data source
 

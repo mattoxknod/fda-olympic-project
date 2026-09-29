@@ -1,0 +1,220 @@
+<title>120 Years of Olympic Data</title>
+<link rel="stylesheet" href="css/styles.css" />
+
+<nav class="site-nav">
+  <a class="brand" href="index.html">120 Years of Olympic Data</a>
+  <div class="links">
+    <a class="nav-link" href="index.html" aria-current="page">Report</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+  </div>
+</nav>
+
+<main>
+  <header class="report-header">
+    <h1>120 Years of Olympic Data</h1>
+    <p class="byline">Mattox Knod &middot; Financial Data Analytics</p>
+    <p class="summary">
+      This report explores 271,116 athlete-event records spanning every Olympic Games from
+      Athens 1896 to Rio 2016, Summer and Winter combined. It looks at which countries have
+      dominated the medal table and how that has shifted over time, how physically different
+      Olympic sports are from one another, and how the Games went from an almost entirely male
+      event to one approaching gender parity.
+    </p>
+  </header>
+
+  <section class="stat-row" aria-label="Headline numbers">
+    <div class="stat-tile">
+      <div class="value" id="stat-events">-</div>
+      <div class="label">Athlete-event records, 1896-2016</div>
+    </div>
+    <div class="stat-tile">
+      <div class="value" id="stat-countries">-</div>
+      <div class="label">Countries (NOCs) represented</div>
+    </div>
+    <div class="stat-tile">
+      <div class="value" id="stat-games">-</div>
+      <div class="label">Olympic Games, Summer + Winter</div>
+    </div>
+    <div class="stat-tile">
+      <div class="value" id="stat-medals">-</div>
+      <div class="label">Medals awarded (de-duplicated)</div>
+    </div>
+  </section>
+
+  <!-- Finding 1 -->
+  <section class="finding">
+    <p class="section-index">Finding 1 of 8</p>
+    <h2>The United States has won nearly 2.5 times as many medals as any other country</h2>
+    <p>
+      Counting one medal per country per event (so a team gold counts once, not once per
+      athlete on the roster), the United States has won 2,823 medals across 120 years of
+      competition &mdash; well ahead of the Soviet Union (1,197) and Germany (1,004). Great
+      Britain, France, and Italy round out the top five. Fifteen countries account for the vast
+      majority of medals ever awarded, out of 230 that have won at least one.
+    </p>
+    <div class="chart-card" id="chart-leaderboard"></div>
+  </section>
+
+  <!-- Finding 2 -->
+  <section class="finding">
+    <p class="section-index">Finding 2 of 8</p>
+    <h2>The medal leaderboard has had two eras: a US-Soviet rivalry, then US dominance</h2>
+    <p>
+      Tracking the six most decorated countries year by year shows the Soviet Union running
+      neck-and-neck with, and at some Games surpassing, the United States through the Cold War
+      era. After the Soviet Union's dissolution in 1991, the United States pulled well clear of
+      the field, while Germany, Great Britain, France, and Italy have traded places well behind
+      the top two.
+    </p>
+    <div class="chart-card" id="chart-trend"></div>
+  </section>
+
+  <!-- Finding 3 -->
+  <section class="finding">
+    <p class="section-index">Finding 3 of 8</p>
+    <h2>Winter medals are far more concentrated among a handful of countries than Summer medals</h2>
+    <p>
+      147 countries have won at least one Summer medal, and the top 10 of them hold 54% of all
+      Summer medals ever awarded. Winter sport tells a very different story: only 46 countries
+      have ever won a Winter medal at all, and the top 10 hold 69% of them. Winter sport's
+      reliance on snow, ice, and cold-weather infrastructure keeps the field of contenders much
+      smaller.
+    </p>
+    <div class="chart-card" id="chart-concentration"></div>
+  </section>
+
+  <!-- Finding 4 -->
+  <section class="finding">
+    <p class="section-index">Finding 4 of 8</p>
+    <h2>Host countries win more medals in their own Games &mdash; every time, in this data</h2>
+    <p>
+      Comparing eight modern Summer host countries' medal count in their host year against their
+      own average in every other Games they appear in, all eight won more medals at home. The
+      swing ranges from a modest +12% for the United States in 1996 (already a huge program) to
+      Australia more than tripling its typical haul in Sydney 2000 (58 medals vs. an average of
+      17). Across all eight cases the average increase is +141%.
+    </p>
+    <div class="chart-card" id="chart-host-bump"></div>
+  </section>
+
+  <!-- Finding 5 -->
+  <section class="finding">
+    <p class="section-index">Finding 5 of 8</p>
+    <h2>The average Olympian's age has barely moved in 120 years</h2>
+    <p>
+      Despite huge changes in training, sports science, and the professionalization of the
+      Games, the average competitor's age has stayed remarkably stable &mdash; 23.1 years old at
+      the first modern Games in 1896, and 26.4 in 2016, with the average sitting in the
+      mid-20s for almost every Games in between.
+    </p>
+    <div class="chart-card" id="chart-age-trend"></div>
+  </section>
+
+  <!-- Finding 6 -->
+  <section class="finding">
+    <p class="section-index">Finding 6 of 8</p>
+    <h2>Sport-specific body types are dramatic: basketball players average 31cm taller than gymnasts</h2>
+    <p>
+      Looking at Summer Games from 2000-2016, basketball players average 191.8cm and 87.2kg,
+      with volleyball close behind. At the other end, gymnasts average just 160.6cm and 54.6kg
+      &mdash; the shortest, lightest athletes of any sport in the data. Weightlifting stands out
+      as an exception to the general "taller means heavier" pattern: weightlifters are almost as
+      short as gymnasts (166.7cm) but carry far more mass (79.2kg), reflecting a sport built
+      around strength-to-weight rather than height.
+    </p>
+    <div class="chart-card" id="chart-height-weight"></div>
+  </section>
+
+  <!-- Finding 7 -->
+  <section class="finding">
+    <p class="section-index">Finding 7 of 8</p>
+    <h2>Women went from 0% of Olympians in 1896 to 45% in 2016</h2>
+    <p>
+      No women competed at the first modern Olympics in 1896. Participation crept up slowly for
+      decades, then accelerated after the 1970s. By the 2012 London Games women made up 44.3% of
+      competitors, and by Rio 2016 that reached 45.0% &mdash; the closest the Games have ever come
+      to gender parity.
+    </p>
+    <div class="chart-card" id="chart-female-share"></div>
+  </section>
+
+  <!-- Finding 8 -->
+  <section class="finding">
+    <p class="section-index">Finding 8 of 8</p>
+    <h2>Boxing and wrestling were the last traditionally male sports to add women's events</h2>
+    <p>
+      Wrestling (competed since 1896) didn't add women's events until 2004; boxing (since 1904)
+      waited until 2012, the most recent addition of any sport that had been part of the Games
+      for decades. In the 2016 field, boxing remained the most male-skewed sport (12.7% female),
+      followed by wrestling (32.4%) and canoeing (33.9%). At the other extreme, synchronized
+      swimming and rhythmic gymnastics remain women-only events, and volleyball, fencing, and
+      taekwondo were within a point or two of an even split.
+    </p>
+    <ul id="latest-female-list"></ul>
+    <div class="chart-card" id="chart-gender-gap"></div>
+  </section>
+
+  <!-- Closing / data section -->
+  <section class="closing" id="about-the-data">
+    <h2>About this data</h2>
+    <ul>
+      <li>
+        <strong>Source.</strong> "120 years of Olympic history: athletes and results," originally
+        compiled by Randi H. Griffin from sports-reference.com and published on
+        <a href="https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results" target="_blank" rel="noopener">Kaggle</a>,
+        downloaded here via its public
+        <a href="https://zenodo.org/records/11449966" target="_blank" rel="noopener">Zenodo mirror</a>.
+      </li>
+      <li>
+        <strong>One row</strong> is one athlete's participation in one event at one Olympic
+        Games (Summer or Winter), 1896-2016. 271,116 rows, 15 columns.
+      </li>
+      <li>
+        <strong>Rows dropped.</strong> None outright. Rows missing age, height, weight, or medal
+        are excluded only from the specific calculation that needs that field.
+      </li>
+      <li>
+        <strong>Medal counts are de-duplicated.</strong> Because every athlete on a team gets
+        their own row, a single team gold (e.g. a 12-player roster) would count as 12 medals if
+        rows were summed directly. Every medal count in this report counts one medal per
+        (Games, Event, Country, Medal color), so a team medal counts once for that country.
+      </li>
+      <li>
+        <strong>Athlete counts are de-duplicated per Games.</strong> An athlete competing in
+        several events at the same Games has one row per event; participation counts and the
+        age and gender-share figures count each athlete once per Games.
+      </li>
+      <li>
+        <strong>Host-country bump</strong> uses eight modern Summer Games with a single,
+        unambiguous host nation (Seoul 1988 through Rio 2016), excluding Games hosted by
+        since-split or since-renamed nations. "Host year" medals are compared to that country's
+        average across all its other Summer Games appearances in the data.
+      </li>
+      <li>
+        <strong>Height and weight by sport</strong> uses Summer Games from 2000-2016 only, and
+        drops any sport with fewer than 30 athlete-Games in that window.
+      </li>
+      <li>
+        <strong>Country groupings use the NOC column</strong>, not Team, since Team includes
+        individual crew/club names (e.g. multi-boat sailing entries) while NOC is the
+        standardized country code used throughout the dataset.
+      </li>
+      <li>
+        Every number on this page is reproducible by running <code>node scripts/analyze.js</code>,
+        which reads <code>data/athlete_events.csv</code> from scratch and regenerates
+        <code>scripts/findings.json</code>. Full detail on every filter and field is in the
+        repository's README.
+      </li>
+    </ul>
+    <p>Want to explore the data yourself? Head to the <a href="dashboard.html">interactive dashboard</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  Data: 120 years of Olympic history (Kaggle / sports-reference.com, via Zenodo). Built for a
+  Financial Data Analytics course project.
+</footer>
+
+<script src="js/noc-names.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/report.js"></script>
