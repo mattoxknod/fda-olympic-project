@@ -31,7 +31,9 @@ _(link added once published with GitHub Pages)_
 ## External libraries
 
 Both `index.html` and `dashboard.html` are otherwise plain HTML/CSS/JS. The one exception is the
-report page's globe, which loads [D3](https://d3js.org/) and
+report page's globe, which loads [D3](https://d3js.org/),
+[d3-geo-projection](https://github.com/d3/d3-geo-projection) (for `geoStitch`, which fixes a
+rendering artifact — see below), and
 [topojson-client](https://github.com/topojson/topojson-client) from a CDN (jsDelivr) to handle the
 map projection and TopoJSON parsing.
 

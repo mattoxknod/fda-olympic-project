@@ -43,11 +43,13 @@
     const markers = groupHostCities(hostCities);
 
     let rotate = [-15, -25];
+    let zoomK = 1;
+    const baseScale = size / 2 - 4;
     let dragging = false;
     let hoverPaused = false;
 
     const projection = d3_.geoOrthographic()
-      .scale(size / 2 - 4)
+      .scale(baseScale)
       .translate([size / 2, size / 2])
       .rotate(rotate)
       .clipAngle(90);
@@ -60,9 +62,9 @@
       .attr("role", "img")
       .attr("aria-label", "Interactive globe of Olympic medal totals by country");
 
-    svg.append("circle")
+    const sphere = svg.append("circle")
       .attr("class", "globe-sphere")
-      .attr("cx", size / 2).attr("cy", size / 2).attr("r", size / 2 - 4);
+      .attr("cx", size / 2).attr("cy", size / 2).attr("r", baseScale);
 
     const graticule = d3_.geoGraticule10();
     const graticulePath = svg.append("path").attr("class", "globe-graticule");
@@ -94,7 +96,9 @@
     let worldData = null;
 
     function render() {
-      projection.rotate(rotate);
+      if (!worldData) return; // map data hasn't finished loading yet
+      projection.rotate(rotate).scale(baseScale * zoomK);
+      sphere.attr("r", baseScale * zoomK);
       graticulePath.attr("d", path(graticule));
 
       const countries = countryLayer.selectAll("path").data(worldData, (d) => d.id);
@@ -170,7 +174,7 @@
     const drag = d3_.drag()
       .on("start", () => { dragging = true; hideTip(); })
       .on("drag", (evt) => {
-        const k = 0.35;
+        const k = 0.35 / zoomK; // slower rotation per pixel when zoomed in
         rotate = [rotate[0] + evt.dx * k, Math.max(-90, Math.min(90, rotate[1] - evt.dy * k))];
         render();
       })
@@ -183,6 +187,18 @@
     svg.on("pointerenter", () => { hoverPaused = true; });
     svg.on("pointerleave", () => { hoverPaused = false; hideTip(); });
 
+    // Scroll to zoom. Filtered to wheel events only so it never fights with
+    // the drag-to-rotate behavior above (touch drag keeps rotating as before).
+    const zoom = d3_.zoom()
+      .scaleExtent([0.6, 4])
+      .filter((evt) => evt.type === "wheel")
+      .on("zoom", (evt) => {
+        zoomK = evt.transform.k;
+        hoverPaused = true;
+        render();
+      });
+    svg.call(zoom);
+
     // Gentle auto-rotate when idle
     const timer = d3_.timer((elapsed) => {
       if (!dragging && !hoverPaused) {
@@ -194,7 +210,14 @@
     fetch("data/countries-110m.json")
       .then((r) => r.json())
       .then((topology) => {
-        worldData = window.topojson.feature(topology, topology.objects.countries).features;
+        let fc = window.topojson.feature(topology, topology.objects.countries);
+        // Countries that cross the antimeridian (Russia, Fiji, the US via the
+        // Aleutians) otherwise draw a spurious straight line across the
+        // globe once clipAngle(90) cuts through them mid-rotation. geoStitch
+        // (from d3-geo-projection) removes the antimeridian cut and
+        // replaces it with proper geodesic segments, which fixes it.
+        if (d3_.geoStitch) fc = d3_.geoStitch(fc);
+        worldData = fc.features;
         render();
       })
       .catch(() => {

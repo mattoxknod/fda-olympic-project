@@ -43,7 +43,7 @@
       </div>
       <div class="header-globe">
         <div id="globe-container" aria-label="Interactive globe: hover a country for its all-time medal and athlete totals, hover a red marker for that city's host year(s) and top 3 countries"></div>
-        <p class="globe-caption">Drag to rotate &middot; hover a country or a host-city marker</p>
+        <p class="globe-caption">Drag to rotate &middot; scroll to zoom &middot; hover a country or a host-city marker</p>
       </div>
     </div>
   </header>
@@ -221,7 +221,8 @@
         drops any sport with fewer than 30 athlete-Games in that window.
       </li>
       <li>
-        <strong>The globe</strong> colors each country by its all-time de-duplicated medal count
+        <strong>The globe</strong> can be dragged to rotate and scrolled to zoom. It colors each
+        country by its all-time de-duplicated medal count
         (log-scaled, since the United States so heavily outweighs most countries) and shows
         unique athletes on hover. Host-city markers rank that Games' "top 3" by total medal
         count, the same method used everywhere else in this report &mdash; not the gold-first
@@ -255,6 +256,7 @@
 <script src="js/flags.js"></script>
 <script src="js/charts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4/dist/d3-geo-projection.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script src="js/globe-countries.js"></script>
 <script src="js/globe.js"></script>
