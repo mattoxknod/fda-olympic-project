@@ -262,6 +262,7 @@
     CHART_DEFAULTS.forEach((_, i) => renderChart(i, ctx));
     renderTable(ctx);
     renderCompare();
+    renderAthletes();
   }
 
   // ---------------- Country comparison ----------------
@@ -335,6 +336,65 @@
     document.getElementById("f-noc").value = noc;
     const search = document.getElementById("f-noc-search");
     if (search) search.value = noc === "all" ? "" : nocLabel(noc);
+  }
+
+  // ---------------- Top athletes by country ----------------
+  // Has its own country picker (independent of the main Country filter, same
+  // pattern as the comparison above) but respects every other active filter.
+  let athleteSort = { key: "medals", dir: "desc" };
+
+  function topAthletesForCountry(rows, noc) {
+    const byAthlete = new Map(); // ID -> { name, medalKeys: Set }
+    for (const r of rows) {
+      if (r.NOC !== noc) continue;
+      if (!byAthlete.has(r.ID)) byAthlete.set(r.ID, { name: r.Name, medalKeys: new Set() });
+      if (r.Medal) byAthlete.get(r.ID).medalKeys.add(`${r.Games}|${r.Event}|${r.Medal}`);
+    }
+    return Array.from(byAthlete.values())
+      .map((a) => ({ name: a.name, medals: a.medalKeys.size }))
+      .filter((a) => a.medals > 0)
+      .sort((a, b) => b.medals - a.medals)
+      .slice(0, 10);
+  }
+
+  function sortAthletes(athletes) {
+    const { key, dir } = athleteSort;
+    const sign = dir === "asc" ? 1 : -1;
+    athletes.sort((a, b) => (key === "name" ? a.name.localeCompare(b.name) : a.medals - b.medals) * sign);
+    return athletes;
+  }
+
+  function updateAthleteSortIndicators() {
+    document.querySelectorAll("#athletes-table th.sortable").forEach((th) => {
+      const key = th.dataset.sort;
+      if (!th.dataset.label) th.dataset.label = th.textContent.trim();
+      th.textContent = th.dataset.label + (athleteSort.key === key ? (athleteSort.dir === "asc" ? " ▲" : " ▼") : "");
+    });
+  }
+
+  function renderAthletes() {
+    const select = document.getElementById("athletes-country");
+    if (!select || !select.value) return;
+    const noc = select.value;
+    const f = currentFilters();
+    const base = applyFilters(allRows, { ...f, noc: "all" });
+    const athletes = sortAthletes(topAthletesForCountry(base, noc));
+
+    const tbody = document.getElementById("athletes-body");
+    tbody.innerHTML = "";
+    athletes.forEach((a, i) => {
+      const tr = document.createElement("tr");
+      [String(i + 1), a.name, a.medals.toLocaleString()].forEach((val) => {
+        const td = document.createElement("td");
+        td.textContent = val;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById("athletes-note").textContent = athletes.length
+      ? `Top ${athletes.length} medal-winning athlete${athletes.length === 1 ? "" : "s"} for ${nocLabel(noc)} in this view.`
+      : `No medal-winning athletes for ${nocLabel(noc)} in this view.`;
   }
 
   function populateSelect(el, values, { withAll = true, allLabel = "All" } = {}) {
@@ -432,6 +492,37 @@
     if (topTwo[1]) document.getElementById("compare-b").value = topTwo[1];
     document.getElementById("compare-a").addEventListener("change", renderCompare);
     document.getElementById("compare-b").addEventListener("change", renderCompare);
+
+    // Top-athletes country picker, defaulted to the all-time medal leader.
+    populateSelect(document.getElementById("athletes-country"), nocs, { withAll: false });
+    if (topTwo[0]) {
+      document.getElementById("athletes-country").value = topTwo[0];
+      document.getElementById("athletes-country-search").value = nocLabel(topTwo[0]);
+    }
+    document.getElementById("athletes-country-search").addEventListener("change", () => {
+      const search = document.getElementById("athletes-country-search");
+      const typed = search.value.trim();
+      const match = nocs.find((n) => n.label.toLowerCase() === typed.toLowerCase());
+      if (match) {
+        document.getElementById("athletes-country").value = match.value;
+        renderAthletes();
+      }
+    });
+    document.getElementById("athletes-country").addEventListener("change", () => {
+      document.getElementById("athletes-country-search").value = nocLabel(document.getElementById("athletes-country").value);
+      renderAthletes();
+    });
+    document.querySelectorAll("#athletes-table th.sortable").forEach((th) => {
+      th.addEventListener("click", () => {
+        const key = th.dataset.sort;
+        athleteSort = athleteSort.key === key
+          ? { key, dir: athleteSort.dir === "asc" ? "desc" : "asc" }
+          : { key, dir: key === "name" ? "asc" : "desc" };
+        updateAthleteSortIndicators();
+        renderAthletes();
+      });
+    });
+    updateAthleteSortIndicators();
 
     const years = Array.from(new Set(allRows.map((r) => r.Year))).sort((a, b) => a - b);
     const yearOpts = years.map((y) => ({ value: y, label: String(y) }));

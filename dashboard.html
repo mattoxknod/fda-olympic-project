@@ -1,3 +1,4 @@
+<meta charset="UTF-8" />
 <title>Olympic Data Dashboard</title>
 <script>
   (function () {
@@ -99,28 +100,6 @@
       </div>
     </section>
 
-    <h2 class="section-title">Charts</h2>
-    <p class="section-sub">Each chart has its own measure and breakdown switch &mdash; both respond to the filters above.</p>
-    <div class="dashboard-grid" id="dashboard-grid"></div>
-
-    <h2 class="section-title">Data behind this view</h2>
-    <p class="section-sub" id="table-note"></p>
-    <div class="table-scroll">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Country</th>
-            <th>Athlete-events</th>
-            <th>Athletes</th>
-            <th>Medals</th>
-            <th>Avg age</th>
-            <th>Female %</th>
-          </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
-    </div>
-
     <h2 class="section-title">Compare two countries</h2>
     <p class="section-sub">Side by side, using the same filters as above.</p>
     <div class="compare-row">
@@ -143,6 +122,48 @@
           </tr>
         </thead>
         <tbody id="compare-body"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Top athletes by country</h2>
+    <p class="section-sub" id="athletes-note">The medal-winning athletes with the most medals for a country, using the same filters as above.</p>
+    <div class="filter-field athletes-country-field">
+      <label for="athletes-country-search">Country</label>
+      <input type="text" id="athletes-country-search" list="noc-datalist" placeholder="Search a country&hellip;" autocomplete="off" />
+      <select id="athletes-country" aria-label="Country for top athletes"></select>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="athletes-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th class="sortable" data-sort="name">Athlete</th>
+            <th class="sortable" data-sort="medals">Medals</th>
+          </tr>
+        </thead>
+        <tbody id="athletes-body"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Charts</h2>
+    <p class="section-sub">Each chart has its own measure and breakdown switch &mdash; both respond to the filters above.</p>
+    <div class="dashboard-grid" id="dashboard-grid"></div>
+
+    <h2 class="section-title">Data behind this view</h2>
+    <p class="section-sub" id="table-note"></p>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Athlete-events</th>
+            <th>Athletes</th>
+            <th>Medals</th>
+            <th>Avg age</th>
+            <th>Female %</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
       </table>
     </div>
   </div>

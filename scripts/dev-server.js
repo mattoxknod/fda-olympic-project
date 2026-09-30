@@ -6,9 +6,14 @@ const path = require("path");
 const root = path.join(__dirname, "..");
 const port = process.argv[2] || 8080;
 
+// charset=utf-8 explicitly on every text type - GitHub Pages sends this by
+// default for .html, but not reliably for .js/.css/.json, and without it a
+// literal UTF-8 character in source (e.g. the ▲/▼ sort arrows) can render as
+// mojibake if the browser falls back to a legacy encoding.
 const types = {
-  ".html": "text/html", ".css": "text/css", ".js": "application/javascript",
-  ".json": "application/json", ".csv": "text/csv", ".svg": "image/svg+xml",
+  ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8", ".json": "application/json; charset=utf-8",
+  ".csv": "text/csv; charset=utf-8", ".svg": "image/svg+xml; charset=utf-8",
 };
 
 http.createServer((req, res) => {

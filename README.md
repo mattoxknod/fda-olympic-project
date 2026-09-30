@@ -107,7 +107,19 @@ One row is one athlete's participation in one event at one Olympic Games (Summer
   keying the join on the country name (stable across geoStitch) instead of the topojson id (not
   reliably preserved by it). Antarctica is also excluded from the globe entirely - no NOC of its
   own, and a common source of polar rendering glitches in an orthographic projection.
-- **The dashboard's "Compare two countries" table ignores the main Country filter** (so you can
-  compare any two countries regardless of what the main dropdown is set to) but respects every
-  other active filter - season, sex, sport, and year range. The country search box and the country
-  dropdown drive the same underlying filter and stay in sync in both directions.
+- **The dashboard's "Compare two countries" and "Top athletes by country" sections ignore the main
+  Country filter** (so you can compare or look up any country regardless of what the main dropdown
+  is set to) but respect every other active filter - season, sex, sport, and year range. The main
+  country search box and the country dropdown drive the same underlying filter and stay in sync in
+  both directions; "Top athletes" has its own independent country search + dropdown pair, wired the
+  same way.
+- **Top athletes by country** ranks by medal count first (one medal per (Games, Event, Medal) for
+  that athlete, so a relay or team event doesn't inflate their total beyond what they actually
+  won), takes the top 10, and only then applies whichever column sort is active - so clicking
+  "Athlete" to sort alphabetically re-orders the same 10 people rather than changing who's in the
+  list. Athletes with zero medals in the current filtered view are excluded rather than padding
+  the list out to 10.
+- **Every file declares `<meta charset="UTF-8">`** and the dev server sends an explicit
+  `charset=utf-8` on every text response. Without it, a literal Unicode character in source (like
+  the sort-column ▲/▼ indicators) can render as mojibake if a browser falls back to a legacy
+  encoding - this bit us once during development and is worth keeping in place.
