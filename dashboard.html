@@ -126,23 +126,46 @@
     </div>
 
     <h2 class="section-title">Top athletes by country</h2>
-    <p class="section-sub" id="athletes-note">The medal-winning athletes with the most medals for a country, using the same filters as above.</p>
-    <div class="filter-field athletes-country-field">
-      <label for="athletes-country-search">Country</label>
-      <input type="text" id="athletes-country-search" list="noc-datalist" placeholder="Search a country&hellip;" autocomplete="off" />
-      <select id="athletes-country" aria-label="Country for top athletes"></select>
+    <p class="section-sub" id="athletes-note">The medal-winning athletes with the most medals per country, using the same filters as above. Click "Athlete" or "Medals" to re-sort.</p>
+    <div class="compare-row">
+      <div class="filter-field">
+        <label for="athletes-country-a-search">Country A</label>
+        <input type="text" id="athletes-country-a-search" list="noc-datalist" placeholder="Search a country&hellip;" autocomplete="off" />
+        <select id="athletes-country-a" aria-label="Country A for top athletes"></select>
+      </div>
+      <div class="filter-field">
+        <label for="athletes-country-b-search">Country B</label>
+        <input type="text" id="athletes-country-b-search" list="noc-datalist" placeholder="Search a country&hellip;" autocomplete="off" />
+        <select id="athletes-country-b" aria-label="Country B for top athletes"></select>
+      </div>
     </div>
-    <div class="table-scroll">
-      <table class="data-table" id="athletes-table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th class="sortable" data-sort="name">Athlete</th>
-            <th class="sortable" data-sort="medals">Medals</th>
-          </tr>
-        </thead>
-        <tbody id="athletes-body"></tbody>
-      </table>
+    <div class="athletes-tables">
+      <div class="table-scroll">
+        <table class="data-table athletes-side-table" data-side="a">
+          <thead>
+            <tr><th colspan="3" id="athletes-a-head">Country A</th></tr>
+            <tr>
+              <th>Rank</th>
+              <th class="sortable" data-sort="name">Athlete</th>
+              <th class="sortable" data-sort="medals">Medals</th>
+            </tr>
+          </thead>
+          <tbody id="athletes-body-a"></tbody>
+        </table>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table athletes-side-table" data-side="b">
+          <thead>
+            <tr><th colspan="3" id="athletes-b-head">Country B</th></tr>
+            <tr>
+              <th>Rank</th>
+              <th class="sortable" data-sort="name">Athlete</th>
+              <th class="sortable" data-sort="medals">Medals</th>
+            </tr>
+          </thead>
+          <tbody id="athletes-body-b"></tbody>
+        </table>
+      </div>
     </div>
 
     <h2 class="section-title">Charts</h2>
@@ -177,5 +200,6 @@
 <script src="js/theme.js"></script>
 <script src="js/csv.js"></script>
 <script src="js/flags.js"></script>
+<script src="js/sport-emoji.js"></script>
 <script src="js/charts.js"></script>
 <script src="js/dashboard.js"></script>

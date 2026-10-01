@@ -36,14 +36,15 @@
     })),
     xFormat: (x) => String(x),
     height: 320,
+    yMax: 300, // the real max (230) never gets close to the generic niceMax of 500
   });
 
   // ---------- Finding 3: Summer vs Winter concentration ----------
   Charts.barChart({
     container: document.getElementById("chart-concentration"),
     data: [
-      { label: "Summer Games", value: data.finding3_concentration.summer.top10ShareOfMedals * 100 },
-      { label: "Winter Games", value: data.finding3_concentration.winter.top10ShareOfMedals * 100 },
+      { label: "☀️ Summer Games", value: data.finding3_concentration.summer.top10ShareOfMedals * 100 },
+      { label: "❄️ Winter Games", value: data.finding3_concentration.winter.top10ShareOfMedals * 100 },
     ],
     valueFormat: (v) => v.toFixed(0) + "%",
     colorIndex: 2,
@@ -73,21 +74,25 @@
     }],
     yFormat: (v) => v.toFixed(0),
     yMinZero: false,
+    yMax: 36,
     height: 280,
   });
 
   // ---------- Finding 6: height & weight by sport ----------
   const hw = data.finding6_heightWeightBySport;
-  const labelSet = new Set([
-    ...hw.slice(0, 3).map((d) => d.Sport),
-    ...hw.slice(-3).map((d) => d.Sport),
-  ]);
+  // Matches exactly the sports named in the prose above, rather than a
+  // blanket "top 3 / bottom 3 by height" - Diving and Trampolining sit
+  // within half a centimeter of Weightlifting, so labeling all of them
+  // guarantees overlapping text; naming only the sports actually discussed
+  // keeps the callouts legible and tied to the narrative.
+  const labelSet = new Set(["Basketball", "Volleyball", "Gymnastics", "Weightlifting"]);
   Charts.scatterChart({
     container: document.getElementById("chart-height-weight"),
     data: hw.map((d) => ({ x: d.avgHeight, y: d.avgWeight, label: d.Sport })),
     xLabel: "Average height (cm)",
     yLabel: "Average weight (kg)",
     labelPredicate: (d) => labelSet.has(d.label),
+    emojiFor: (d) => window.sportEmoji && sportEmoji(d.label),
   });
 
   // ---------- Finding 7: female share of athletes over time ----------
@@ -107,7 +112,7 @@
   const subset = [...gap.slice(0, 8), ...gap.slice(-8)];
   Charts.divergingBarChart({
     container: document.getElementById("chart-gender-gap"),
-    data: subset.map((d) => ({ label: d.Sport, value: d.femaleShare })),
+    data: subset.map((d) => ({ label: `${sportEmoji(d.Sport)} ${d.Sport}`, value: d.femaleShare })),
     baseline: 50,
     valueFormat: (v) => v.toFixed(0) + "%",
   });

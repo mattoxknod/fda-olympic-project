@@ -334,7 +334,7 @@
   }
 
   // ---------------- Line chart (multi-series, crosshair + tooltip) ----------------
-  function lineChart({ container, series, xFormat, yFormat, height = 300, yMinZero = true }) {
+  function lineChart({ container, series, xFormat, yFormat, height = 300, yMinZero = true, yMax: yMaxOverride }) {
     container.innerHTML = "";
     buildLegend(container, series.map((s, i) => ({
       label: s.name, color: seriesColor(i), shape: "line", noc: s.noc,
@@ -347,7 +347,7 @@
     const allX = series.flatMap((s) => s.points.map((p) => p.x));
     const allY = series.flatMap((s) => s.points.map((p) => p.y));
     const xMin = Math.min(...allX), xMax = Math.max(...allX);
-    const yMax = niceMax(Math.max(...allY));
+    const yMax = yMaxOverride || niceMax(Math.max(...allY));
     const yMin = yMinZero ? 0 : Math.min(...allY);
 
     const xScale = (x) => margin.left + ((x - xMin) / (xMax - xMin || 1)) * plotW;
@@ -376,6 +376,12 @@
       const color = seriesColor(i);
       const pts = s.points.slice().sort((a, b) => a.x - b.x);
       const d = pts.map((p, idx) => `${idx === 0 ? "M" : "L"}${xScale(p.x)},${yScale(p.y)}`).join(" ");
+      // A single series reads well with a soft area wash under the line (per
+      // the dataviz spec: the series hue at ~10% opacity, never a solid fill).
+      if (series.length === 1) {
+        const areaD = `${d} L${xScale(pts[pts.length - 1].x)},${yScale(yMin)} L${xScale(pts[0].x)},${yScale(yMin)} Z`;
+        el("path", { d: areaD, fill: color, opacity: 0.1, stroke: "none" }, svg);
+      }
       el("path", { d, fill: "none", stroke: color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round", class: "chart-mark", "data-series": i }, svg);
 
       const last = pts[pts.length - 1];
@@ -522,7 +528,7 @@
   }
 
   // ---------------- Scatter chart ----------------
-  function scatterChart({ container, data, xLabel, yLabel, labelPredicate, height = 380 }) {
+  function scatterChart({ container, data, xLabel, yLabel, labelPredicate, emojiFor, height = 380 }) {
     container.innerHTML = "";
     const width = 640;
     const margin = { top: 14, right: 20, bottom: 36, left: 50 };
@@ -552,9 +558,24 @@
 
     data.forEach((d) => {
       const cx = xScale(d.x), cy = yScale(d.y);
-      el("circle", { cx, cy, r: 5, fill: "var(--series-1)", opacity: 0.75, class: "chart-mark", stroke: "var(--surface)", "stroke-width": 1.5 }, svg);
-      if (labelPredicate && labelPredicate(d)) {
-        el("text", { x: cx + 7, y: cy + 3, class: "chart-direct-label" }, svg).textContent = d.label;
+      const isCalledOut = labelPredicate && labelPredicate(d);
+      // Showing an emoji on all ~36 points gets cluttered fast in a tight
+      // cluster - reserve it for the handful of called-out standouts, so it
+      // adds a visual highlight instead of noise; everything else stays a
+      // quiet dot.
+      const emoji = isCalledOut && emojiFor && emojiFor(d);
+      if (emoji) {
+        el("text", {
+          x: cx, y: cy, "text-anchor": "middle", "dominant-baseline": "central", "font-size": 17,
+        }, svg).textContent = emoji;
+      } else {
+        el("circle", {
+          cx, cy, r: isCalledOut ? 5 : 4, fill: "var(--series-1)",
+          opacity: isCalledOut ? 0.9 : 0.45, class: "chart-mark", stroke: "var(--surface)", "stroke-width": 1.5,
+        }, svg);
+      }
+      if (isCalledOut) {
+        el("text", { x: cx + (emoji ? 11 : 7), y: cy + 3, class: "chart-direct-label" }, svg).textContent = d.label;
       }
       const hit = el("circle", { cx, cy, r: 12, class: "chart-hit" }, svg);
       hit.addEventListener("pointerenter", () => showTip(d, cx, cy));

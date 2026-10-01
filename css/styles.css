@@ -218,7 +218,7 @@ main {
   border-bottom: 1px solid var(--border);
 }
 .report-header .header-inner {
-  max-width: 860px;
+  max-width: 1040px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -226,13 +226,13 @@ main {
   flex-wrap: wrap;
 }
 .header-text {
-  flex: 1 1 380px;
+  flex: 1 1 360px;
   min-width: 0;
 }
 .header-globe {
   flex: none;
   margin: 0 auto;
-  max-width: 260px;
+  max-width: min(420px, 85vw);
 }
 @media (max-width: 720px) {
   .report-header .header-inner {
@@ -504,8 +504,8 @@ td.country-cell .flag-chip {
 /* ---------- Globe ---------- */
 .globe-wrap {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: min(420px, 85vw);
+  height: min(420px, 85vw);
   touch-action: none;
 }
 .globe-wrap svg {
@@ -547,7 +547,7 @@ td.country-cell .flag-chip {
   font-size: 0.72rem;
   color: var(--text-muted);
   margin-top: 6px;
-  max-width: 260px;
+  max-width: min(420px, 85vw);
 }
 .globe-tooltip {
   max-width: 220px;
@@ -732,16 +732,30 @@ table.compare-table td.compare-lead {
   font-weight: 650;
 }
 
-.athletes-country-field {
-  max-width: 260px;
-  margin-bottom: 16px;
-}
 table.data-table th.sortable {
   cursor: pointer;
   user-select: none;
 }
 table.data-table th.sortable:hover {
   color: var(--text-primary);
+}
+.athletes-tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.athletes-tables th[colspan] {
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-primary);
+  font-weight: 650;
+  background: var(--surface-raised);
+}
+@media (max-width: 720px) {
+  .athletes-tables {
+    grid-template-columns: 1fr;
+  }
 }
 
 .dashboard-grid .chart-card { border-top: 3px solid var(--chart-accent, var(--series-1)); }

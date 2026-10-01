@@ -35,7 +35,7 @@
       return;
     }
     const d3_ = window.d3;
-    const size = 340;
+    const size = 420;
     const statsByNoc = new Map(countryStats.map((c) => [c.NOC, c]));
     const nocByMapName = new Map();
     Object.entries(window.NOC_TO_MAP_NAME || {}).forEach(([noc, name]) => nocByMapName.set(name, noc));

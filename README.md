@@ -32,6 +32,7 @@ _(link added once published with GitHub Pages)_
 | `js/globe-countries.js` | Maps NOC codes to the country name strings used in `data/countries-110m.json`, so the globe can join medal/athlete stats to map shapes. |
 | `data/countries-110m.json` | World country boundaries (Natural Earth, 110m resolution, via the `world-atlas` npm package) used to draw the globe. |
 | `js/theme.js` | Wires up the manual dark/light toggle in the nav bar (shared by both pages; preference saved to `localStorage`). |
+| `js/sport-emoji.js` | Maps each Olympic sport to a representative emoji, used in the dashboard's filters/charts and the report's finding 6 and finding 8 charts. |
 
 ## External libraries
 
@@ -111,14 +112,31 @@ One row is one athlete's participation in one event at one Olympic Games (Summer
   Country filter** (so you can compare or look up any country regardless of what the main dropdown
   is set to) but respect every other active filter - season, sex, sport, and year range. The main
   country search box and the country dropdown drive the same underlying filter and stay in sync in
-  both directions; "Top athletes" has its own independent country search + dropdown pair, wired the
-  same way.
+  both directions; "Top athletes" has its own independent country search + dropdown pair **per
+  side** (Country A and Country B each get one), wired the same way, so the two countries' top-10
+  athlete lists sit side by side.
 - **Top athletes by country** ranks by medal count first (one medal per (Games, Event, Medal) for
   that athlete, so a relay or team event doesn't inflate their total beyond what they actually
   won), takes the top 10, and only then applies whichever column sort is active - so clicking
   "Athlete" to sort alphabetically re-orders the same 10 people rather than changing who's in the
   list. Athletes with zero medals in the current filtered view are excluded rather than padding
-  the list out to 10.
+  the list out to 10. The sort control is shared across both country tables.
+- **Country flags cover 219 of the 230 NOCs** in the dataset (up from an earlier, much smaller
+  set). The 11 left as a neutral placeholder are either deliberately unmapped (Chinese Taipei,
+  Independent Olympic Athletes, the Refugee Olympic Team - all of which compete under a neutral
+  banner, not a national flag) or one-off historical/ambiguous codes (e.g. Crete 1906, Saar 1952)
+  too obscure to confidently assign a real flag to.
+- **Report chart y-axes are occasionally capped by hand instead of the generic "nice round number"
+  rule** when the generic rule produces a misleadingly tall axis for this data: the medal-trend
+  line (finding 2) is capped at 300 against a real max of 230, and the age-trend line (finding 5)
+  at 36 against a real max of 30.6 - both give the actual variation in the data much more of the
+  chart's vertical space than an auto-computed 500 or 50 would.
+- **Finding 6's scatter chart only emoji-marks and labels four sports** (Basketball, Volleyball,
+  Gymnastics, Weightlifting) - exactly the ones named in the prose above it - rather than every
+  sport in the top/bottom few by height. Several sports (Diving, Trampolining, Weightlifting) sit
+  within half a centimeter of each other, so labeling all of them produced overlapping text;
+  matching the callouts to the sports actually discussed keeps the chart legible without losing
+  any of the finding's substance (the full data for every sport is still plotted, just unlabeled).
 - **Every file declares `<meta charset="UTF-8">`** and the dev server sends an explicit
   `charset=utf-8` on every text response. Without it, a literal Unicode character in source (like
   the sort-column ▲/▼ indicators) can render as mojibake if a browser falls back to a legacy
